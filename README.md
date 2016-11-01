@@ -6,7 +6,7 @@ bashflix.sh The.Walking.Dead.S07E02
 
 ## Installation and Configuration
 
-## Who it works?
+## How it works?
 It combines [**pirate-get**](https://github.com/vikstrous/pirate-get) with [**peerflix**](https://github.com/mafintosh/peerflix) and [**subliminal**](https://github.com/Diaoul/subliminal)
 
 
