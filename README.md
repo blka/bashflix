@@ -13,7 +13,7 @@ bashflix.sh Movie.Or.Series.SXXEYY
 # Installation and Configuration
 
 # How it works?
-It combines [**pirate-get**](https://github.com/vikstrous/pirate-get) with [**peerflix**](https://github.com/mafintosh/peerflix) and [**subliminal**](https://github.com/Diaoul/subliminal)
+It combines [**pirate-get**](https://github.com/vikstrous/pirate-get) for torrent search, with [**peerflix**](https://github.com/mafintosh/peerflix) for torrent streaming, and [**subliminal**](https://github.com/Diaoul/subliminal) for subtiltes
 
 
 
