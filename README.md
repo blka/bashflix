@@ -4,7 +4,9 @@ Linux script to watch movies and series with subtitles, instantaneously. You jus
 It combines **pirate-get** with **peerflix** and **subliminal**
 
 https://github.com/vikstrous/pirate-get
+
 https://github.com/mafintosh/peerflix
+
 https://github.com/Diaoul/subliminal
 
 
