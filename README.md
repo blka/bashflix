@@ -1,5 +1,5 @@
 # bashflix
-Linux script to watch movies and series with subtitles, instantaneously. You just give the name, quickly grab your popcorn and start watching :) 
+Linux script to watch movies and series with subtitles, instantaneously. Just give the name, quickly grab your popcorn and start watching :) 
 
 # Usage
 **Example:** 
