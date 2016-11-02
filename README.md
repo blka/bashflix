@@ -24,6 +24,8 @@ or
 2. To run bashflix.sh:
   ```
   cd bashflix-master
+  ```
+  ```
   chmod u+x bashflix.sh
   ``` 
 3. To change subtitles language, open bashflix.sh and change *lang1* and *lang2*. Change both if you want an alternative, in case your first language is not found.
