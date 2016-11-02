@@ -31,7 +31,7 @@ or
   ```
   chmod u+x bashflix.sh
   ``` 
-3. To change subtitles language, open bashflix.sh and change *lang1* and *lang2*. Change both if you want an alternative, in case your first language is not found.
+3. Default languages are **pt** and the alternative is **en**. To change subtitles language, open *bashflix.sh* and change *lang1* and *lang2*. The alternative is for the case when your primary language is not found.
 
 # How it works?
 It combines [**pirate-get**](https://github.com/vikstrous/pirate-get) for torrent search, with [**peerflix**](https://github.com/mafintosh/peerflix) for torrent streaming, and [**subliminal**](https://github.com/Diaoul/subliminal) for subtiltes
