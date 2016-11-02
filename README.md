@@ -25,6 +25,7 @@ or
   ```
   cd bashflix-master
   ```
+  and
   ```
   chmod u+x bashflix.sh
   ``` 
