@@ -20,7 +20,7 @@ or
 ``` 
 # Installation and Configuration
 1. Install [**pirate-get**](https://github.com/vikstrous/pirate-get), [**peerflix**](https://github.com/mafintosh/peerflix) and [**subliminal**](https://github.com/Diaoul/subliminal).
-2. 
+2. To run bashflix.sh
 ```
 cd bashflix-master
 chmod u+x bashflix.sh
