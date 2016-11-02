@@ -19,8 +19,8 @@ or
 ./bashflix.sh Movie.To.Watch
 ``` 
 # Installation and Configuration
-1. Install [**pirate-get**](https://github.com/vikstrous/pirate-get), [**peerflix**](https://github.com/mafintosh/peerflix) and [**subliminal**](https://github.com/Diaoul/subliminal).
-2. To run bashflix.sh
+1. Install [**pirate-get**](https://github.com/vikstrous/pirate-get), [**peerflix**](https://github.com/mafintosh/peerflix), [**subliminal**](https://github.com/Diaoul/subliminal), and [**vlc**](http://www.videolan.org/vlc/index.html)
+2. To run bashflix.sh:
 ```
 cd bashflix-master
 chmod u+x bashflix.sh
