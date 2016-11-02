@@ -8,7 +8,7 @@ Linux script to watch movies and series with subtitles, instantaneously. Just gi
 ```
 or
 ```
-./bashflix.sh Captain.America.Civil.War
+./bashflix.sh Blood.Father
 ```
 **Format:** 
 ```
