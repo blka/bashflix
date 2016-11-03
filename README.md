@@ -23,7 +23,7 @@ or
 (under construction...)
 
 1. Install [**pirate-get**](https://github.com/vikstrous/pirate-get), [**peerflix**](https://github.com/mafintosh/peerflix), [**subliminal**](https://github.com/Diaoul/subliminal), and [**smplayer**](http://smplayer.sourceforge.net/)
-2. To run bashflix.sh:
+2. To make bashflix.sh runnable:
   ```
   cd bashflix-master
   ```
