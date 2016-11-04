@@ -1,7 +1,7 @@
 #!/bin/bash
 
-lang1="pt"
-lang2="en"
+lang1="en"
+lang2="pt"
 
 get-subs () {
   echo ${name// /.}
@@ -30,7 +30,7 @@ sub3=${sub2:2}
 mv ${sub:2} ${sub3}
 
 # get magnet again to peerflix stream
-pirate-get -s SeedersDsc -0 -C "peerflix \"%s\" -g -t ${sub3}" $1
+pirate-get -s SeedersDsc -0 -C "peerflix \"%s\" -k -t ${sub3}" $1
 
 # remove created files
 rm *.srt && rm *.magnet
