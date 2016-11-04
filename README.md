@@ -25,20 +25,39 @@ or
 
 # Installation and Configuration
 
-1. Make install.sh runnable:
+## Linux
+
+1. Make install-Linux.sh runnable:
   
   ```
   cd bashflix-master
   ```
   ```
-  chmod u+x install.sh
+  chmod u+x install-Linux.sh
   ``` 
 2. Run install script:
   
   ```
-  ./install.sh YOUR_UBUNTU_PASSWORD
+  ./install-Linux.sh YOUR_UBUNTU_PASSWORD
   ```
   *Your ubuntu password is required because some programs can only be installed with it (sudo)*
+  
+## Mac OS X
+
+1. Make install-OSX.sh runnable:
+  
+  ```
+  cd bashflix-master
+  ```
+  ```
+  chmod u+x install-OSX.sh
+  ``` 
+2. Run install script:
+  
+  ```
+  ./install-OSX.sh YOUR_MAC_OSX_PASSWORD
+  ```
+  *Your Mac OS X password is required because some programs can only be installed with it (sudo)*
 
 Default languages are **pt** and the alternative is **en**. To change subtitles language, open *bashflix.sh* and change *lang1* and *lang2*. The alternative is for the case when your primary language is not found.
 
