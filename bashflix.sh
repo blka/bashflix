@@ -8,10 +8,20 @@ get-subs () {
 }
 
 # get magnet 
-pirate-get -s SeedersDsc -0 -M $1
+pirate-get -s SeedersDsc -0 -C "echo \"%s\"" $1 |
+  while IFS= read -r line
+  do
+    echo "$line" > magnet.txt
+  done
 
-magnet=$(find . -maxdepth 1 -name "*.magnet" | head -1)
-name=${magnet:2:-7}
+value=$(<magnet.txt)
+value2=$(awk -F "&" '{print $2}' <<< "$value")
+value3=$(awk -F "=" '{print $2}' <<< "$value2")
+value4=$(echo "$value3" | sed -e 's/%\([0-9A-F][0-9A-F]\)/\\\\\x\1/g' | xargs echo -e)
+
+#magnet=$(find . -maxdepth 1 -name "*.magnet" | head -1)
+#name=${magnet:2:-7}
+name=${value4}
 
 # get subtitles
 get-subs ${lang1}
@@ -32,4 +42,4 @@ mv ${sub:2} ${sub3}
 pirate-get -s SeedersDsc -0 -C "peerflix \"%s\" -k -t ${sub3}" $1
 
 # remove created files
-rm *.srt && rm *.magnet
+rm *.srt && rm *.magnet && rm magnet.txt
