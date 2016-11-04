@@ -3,7 +3,7 @@ Linux shell script to watch movies and series with subtitles, instantaneously. J
 
 ![](http://i.imgur.com/FX4bt1B.gif)
 
-**Demo:** https://youtu.be/neA2PtCmY_U
+**Demo (32s):** https://youtu.be/neA2PtCmY_U
 
 # Usage
 **Example:** 
@@ -24,7 +24,6 @@ or
 ``` 
 
 # Installation and Configuration
-(under construction...)
 
 1. Install [**pirate-get**](https://github.com/vikstrous/pirate-get), [**peerflix**](https://github.com/mafintosh/peerflix), [**subliminal**](https://github.com/Diaoul/subliminal), and [**mvp**](http://ubuntuhandbook.org/index.php/2016/07/install-mpv-media-player-ubuntu-16-04/)
 2. To make bashflix.sh runnable:
