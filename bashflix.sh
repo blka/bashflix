@@ -4,7 +4,6 @@ lang1="pt"
 lang2="en"
 
 get-subs () {
-  echo ${name// /.}
   subliminal download -l $1 ${name// /.} 
 }
 
