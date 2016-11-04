@@ -24,6 +24,7 @@ or
 ``` 
 
 # Installation and Configuration
+(script ./install.sh in construction...)
 
 1. Install [**pirate-get**](https://github.com/vikstrous/pirate-get): 
   
