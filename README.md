@@ -26,18 +26,22 @@ or
 # Installation and Configuration
 
 1. Install [**pirate-get**](https://github.com/vikstrous/pirate-get): 
+  
   ```
   sudo pip3 install pirate-get
   ```
 2. Install [**peerflix**](https://github.com/mafintosh/peerflix):
+  
   ```
   sudo npm install -g peerflix
   ```
 3. Install [**subliminal**](https://github.com/Diaoul/subliminal):
+  
   ```
   sudo pip install subliminal
   ```
 4. Install [**mvp**](http://ubuntuhandbook.org/index.php/2016/07/install-mpv-media-player-ubuntu-16-04/):
+  
   ```
   sudo add-apt-repository ppa:mc3man/mpv-tests
   ```
@@ -45,6 +49,7 @@ or
   sudo apt update && sudo apt install mpv
   ```
 5. To make bashflix.sh runnable:
+  
   ```
   cd bashflix-master
   ```
