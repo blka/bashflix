@@ -38,7 +38,7 @@ or
   ```
   ./install.sh YOUR_UBUNTU_PASSWORD
   ```
-  Your ubuntu password is required because some programs can only be installed with it (sudo)
+  *Your ubuntu password is required because some programs can only be installed with it (sudo)*
 
 Default languages are **pt** and the alternative is **en**. To change subtitles language, open *bashflix.sh* and change *lang1* and *lang2*. The alternative is for the case when your primary language is not found.
 
