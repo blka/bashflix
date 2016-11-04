@@ -1,7 +1,7 @@
 #!/bin/bash
 
-lang1="en"
-lang2="pt"
+lang1="pt"
+lang2="en"
 
 get-subs () {
   echo ${name// /.}
