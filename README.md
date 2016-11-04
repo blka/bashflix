@@ -36,7 +36,7 @@ or
 2. Run install script:
   
   ```
-  ./install YOUR_UBUNTU_PASSWORD
+  ./install.sh YOUR_UBUNTU_PASSWORD
   ```
 
 Default languages are **pt** and the alternative is **en**. To change subtitles language, open *bashflix.sh* and change *lang1* and *lang2*. The alternative is for the case when your primary language is not found.
