@@ -25,7 +25,7 @@ or
 
 # Installation and Configuration
 
-## Linux
+## Linux (Ubuntu for example)
 
 1. Make install-Linux.sh runnable:
   
