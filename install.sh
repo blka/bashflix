@@ -39,7 +39,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   if ! which brew &>/dev/null; then
     echo "Preparing to install Homebrew ..."
     /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-    run-with-sudo brew install git
+    brew install git
   fi
 else 
   if [[ "$OSTYPE" != "linux-gnu" ]]; then
@@ -58,10 +58,10 @@ if ! which npm &>/dev/null; then
   cd ~/.nodenv/plugins/node-build && git pull
   ~/.nodenv/bin/nodenv install -s ${node_version}
   ~/.nodenv/bin/nodenv global ${node_version}
-  export PATH="$HOME/.nodenv/bin":$PATH
+  export PATH="$HOME/.nodenv/bin:$PATH"
   nodenv init - zsh
   nodenv rehash
-  echo 'export PATH="$HOME/.nodenv/bin:$PATH"' >> .bashrc
+  echo 'export PATH="$HOME/.nodenv/bin:$PATH"' >> ${HOME}/.bashrc
 fi
 
 echo "Looking for PIP3 ..."
