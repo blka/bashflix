@@ -51,16 +51,19 @@ echo "Looking for NPM ..."
 if ! which npm &>/dev/null; then
   node_version="7.0.0"
   echo "Preparing to install Node ${node_version} and NPM ..."
-  git clone https://github.com/nodenv/nodenv.git ~/.nodenv
-  cd ~/.nodenv && src/configure && make -C src
-  git clone https://github.com/nodenv/node-build.git ~/.nodenv/plugins/node-build
-  cd ~/.nodenv && git pull
-  cd ~/.nodenv/plugins/node-build && git pull
-  ~/.nodenv/bin/nodenv install -s ${node_version}
-  ~/.nodenv/bin/nodenv global ${node_version}
+  [[ ! -d "${HOME}/.nodenv" ]] && git clone https://github.com/nodenv/nodenv.git ${HOME}/.nodenv
+  cd ${HOME}/.nodenv && src/configure && make -C src
+  [[ ! -d "${HOME}/.nodenv/plugins/node-build" ]] && git clone https://github.com/nodenv/node-build.git ${HOME}/.nodenv/plugins/node-build
+  cd ${HOME}/.nodenv && git pull
+  cd ${HOME}/.nodenv/plugins/node-build && git pull
+
   export PATH="$HOME/.nodenv/bin:$PATH"
+  nodenv install -s ${node_version}
+  nodenv global ${node_version}
+
   nodenv init - zsh
   nodenv rehash
+
   echo 'export PATH="$HOME/.nodenv/bin:$PATH"' >> ${HOME}/.bashrc
 fi
 
