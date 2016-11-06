@@ -36,10 +36,11 @@ If you input a language, the alterative is **en** in case your language was not 
 
 ## Linux (Ubuntu for example) and Mac OS
 
-1. Open terminal (ctrl+alt+t) and type 
-``` 
-cd Downloads/bashflix-master
-``` 
+1. Open terminal (ctrl+alt+t) and type: 
+  
+  ``` 
+  cd Downloads/bashflix-master
+  ``` 
 
 2. Run install script:
   
