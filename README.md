@@ -12,21 +12,21 @@ You can run it from everywhere. Just open terminal (ctrl+alt+t) and type:
 
 **Examples:** 
 ```
-bashflix.sh The.Walking.Dead.S07E02 pt
+bashflix The.Walking.Dead.S07E02 pt
 ```
 ```
-bashflix.sh Blood.Father fr
+bashflix Blood.Father fr
 ```
 ```
-bashflix.sh John.Wick
+bashflix John.Wick
 ```
 **Format:** 
 ```
-bashflix.sh Series.To.Watch.SXXEYY language
+bashflix Series.To.Watch.SXXEYY language
 ```
 or
 ```
-bashflix.sh Movie.To.Watch language
+bashflix Movie.To.Watch language
 ``` 
 
 If you do not input language, default is no language.
@@ -52,7 +52,7 @@ Open terminal (ctrl+alt+t) and type:
   ./install.sh
   ```
   
-To change default language, change variable *lang2* in file bashflix.sh.
+To change default language, change variable *default_language* in file bashflix.sh.
 
 # How it works?
 

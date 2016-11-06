@@ -89,4 +89,4 @@ run-with-sudo npm install -g peerflix
 
 chmod u+x bashflix.sh
 
-sudo cp bashflix.sh /usr/local/bin/
+run-with-sudo ln -s $(pwd)/bashflix.sh /usr/local/bin/bashflix
