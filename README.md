@@ -1,6 +1,6 @@
 # bashflix
 
-Linux/Mac OS X bash script to watch movies and series with subtitles, instantaneously.
+Linux/Mac OS bash script to watch movies and series with subtitles, instantaneously.
 Just give the name, quickly grab your popcorn and start watching :) 
 
 ![](http://i.imgur.com/FX4bt1B.gif)
@@ -40,11 +40,10 @@ Open terminal (ctrl+alt+t) and type:
 1. Run install script:
   
   ```
-  ./install.sh YOUR_LINUX_PASSWORD
+  ./install.sh
   ```
-  *Your Linux password is required because some programs can only be installed with it (sudo)*
   
-To change defalut language, change variable *lang2* in bashflix.sh 
+To change default language, change variable *lang2* in file bashflix.sh.
 
 # How it works?
 
