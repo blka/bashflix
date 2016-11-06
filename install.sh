@@ -49,23 +49,14 @@ fi
 
 echo "Looking for NPM ..."
 if ! which npm &>/dev/null; then
-  node_version="7.0.0"
-  echo "Preparing to install Node ${node_version} and NPM ..."
-  [[ ! -d "${HOME}/.nodenv" ]] && git clone https://github.com/nodenv/nodenv.git ${HOME}/.nodenv
-  cd ${HOME}/.nodenv && src/configure && make -C src
-  [[ ! -d "${HOME}/.nodenv/plugins/node-build" ]] && git clone https://github.com/nodenv/node-build.git ${HOME}/.nodenv/plugins/node-build
-  cd ${HOME}/.nodenv && git pull
-  cd ${HOME}/.nodenv/plugins/node-build && git pull
-
-  export PATH="$HOME/.nodenv/bin:$PATH"
-  nodenv install -s ${node_version}
-  nodenv global ${node_version}
-
-  nodenv init - zsh
-  nodenv rehash
-
-  echo 'export PATH="$HOME/.nodenv/bin:$PATH"' >> ${HOME}/.bashrc
-  echo 'eval "$($HOME/.nodenv/bin/nodenv init - zsh)"' >> ${HOME}/.bashrc
+  if [[ "$OSTYPE" == "linux-gnu" ]]; then
+    run-with-sudo apt-get -y update
+    run-with-sudo apt-get install npm -y
+    curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -
+    run-with-sudo apt-get install nodejs -y
+  elif [[ "$OSTYPE" == "darwin"* ]]; then
+    brew install npm
+  fi
 fi
 
 echo "Looking for PIP3 ..."
