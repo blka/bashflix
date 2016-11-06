@@ -6,31 +6,34 @@ Linux/Mac OS X bash script to watch movies and series with subtitles, instantane
 **Demo (32s):** https://youtu.be/neA2PtCmY_U
 
 # Usage
+You can run it from everywhere. Just open terminal (ctrl+alt+t) and type:
+
 **Example:** 
 ```
-./bashflix.sh The.Walking.Dead.S07E02
+bashflix.sh The.Walking.Dead.S07E02
 ```
 or
 ```
-./bashflix.sh Blood.Father
+bashflix.sh Blood.Father
 ```
 **Format:** 
 ```
-./bashflix.sh Series.To.Watch.SXXEYY
+bashflix.sh Series.To.Watch.SXXEYY
 ```
 or
 ```
-./bashflix.sh Movie.To.Watch
+bashflix.sh Movie.To.Watch
 ``` 
 
 # Installation and Configuration
 
 ## Linux (Ubuntu for example)
+Open terminal (ctrl+alt+t) and type:
 
 1. Make install-Linux.sh runnable:
   
   ```
-  cd bashflix-master
+  cd Downloads/bashflix-master
   ```
   ```
   chmod u+x install-Linux.sh
@@ -38,9 +41,9 @@ or
 2. Run install script:
   
   ```
-  ./install-Linux.sh YOUR_UBUNTU_PASSWORD
+  ./install-Linux.sh YOUR_LINUX_PASSWORD
   ```
-  *Your ubuntu password is required because some programs can only be installed with it (sudo)*
+  *Your Linux password is required because some programs can only be installed with it (sudo)*
   
 Default languages are **pt** and the alternative is **en**. To change subtitles language, open *bashflix.sh* and change *lang1* and *lang2*. The alternative is for the case when your primary language is not found.
 
