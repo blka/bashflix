@@ -65,6 +65,7 @@ if ! which npm &>/dev/null; then
   nodenv rehash
 
   echo 'export PATH="$HOME/.nodenv/bin:$PATH"' >> ${HOME}/.bashrc
+  echo 'eval "$($HOME/.nodenv/bin/nodenv init - zsh)"' >> ${HOME}/.bashrc
 fi
 
 echo "Looking for PIP3 ..."
