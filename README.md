@@ -8,22 +8,26 @@ Linux/Mac OS X bash script to watch movies and series with subtitles, instantane
 # Usage
 You can run it from everywhere. Just open terminal (ctrl+alt+t) and type:
 
-**Example:** 
+**Examples:** 
 ```
-bashflix.sh The.Walking.Dead.S07E02
+bashflix.sh The.Walking.Dead.S07E02 pt
 ```
-or
 ```
-bashflix.sh Blood.Father
+bashflix.sh Blood.Father fr
+```
+```
+bashflix.sh John.Wick
 ```
 **Format:** 
 ```
-bashflix.sh Series.To.Watch.SXXEYY
+bashflix.sh Series.To.Watch.SXXEYY language
 ```
 or
 ```
-bashflix.sh Movie.To.Watch
+bashflix.sh Movie.To.Watch language
 ``` 
+
+If you do not input language, default is no language. If you input a language, the alterative is **en** in case your language was not found.
 
 # Installation and Configuration
 
@@ -45,7 +49,7 @@ Open terminal (ctrl+alt+t) and type:
   ```
   *Your Linux password is required because some programs can only be installed with it (sudo)*
   
-Default languages are **pt** and the alternative is **en**. To change subtitles language, open *bashflix.sh* and change *lang1* and *lang2*. The alternative is for the case when your primary language is not found.
+To change defalut language, change variable *lang2* in bashflix.sh 
 
 # How it works?
 It combines [**pirate-get**](https://github.com/vikstrous/pirate-get) for torrent search, with [**peerflix**](https://github.com/mafintosh/peerflix) for torrent streaming, and [**subliminal**](https://github.com/Diaoul/subliminal) for subtitles
