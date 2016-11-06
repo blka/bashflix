@@ -8,6 +8,24 @@
 
 set -e
 
+password="${1}"
+
+if [ -z "${password}" ]; then
+  echo "Password is mandatory!"
+  echo ""
+  echo "usage: $0 <password>"
+  echo ""
+  echo "notes: the password will be used to run apt-get and pip3 with sudo"
+  echo ""
+  echo -n "Introduce your password: "
+  read -s password
+  echo ""
+fi
+
+run-with-sudo() {
+  echo "${password}" | sudo -S ${@}
+}
+
 echo "Checking OS ..."
 if [[ "$OSTYPE" != "linux-gnu" ]] && [[ "$OSTYPE" != "darwin"* ]]; then
   echo "Only Mac OS and Ubuntu are supported at the moment."
@@ -45,8 +63,8 @@ echo "Looking for PIP3 ..."
 if ! which pip3 &>/dev/null; then
   echo "Preparing to install PIP3 ..."
   if [[ "$OSTYPE" == "linux-gnu" ]]; then
-    sudo apt-get -y update
-    sudo apt-get install -y python3 python3-pip
+    run-with-sudo apt-get -y update
+    run-with-sudo apt-get install -y python3 python3-pip
   elif [[ "$OSTYPE" == "darwin"* ]]; then
     brew install python3
   fi
@@ -54,18 +72,18 @@ fi
 
 echo "Preparing to install MPV ..."
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
-  sudo add-apt-repository -y ppa:mc3man/mpv-tests
-  sudo apt-get -y update
-  sudo apt-get install -y libxslt1-dev libxml2-dev
-  sudo apt-get install -y mpv
+  run-with-sudo add-apt-repository -y ppa:mc3man/mpv-tests
+  run-with-sudo apt-get -y update
+  run-with-sudo apt-get install -y libxslt1-dev libxml2-dev
+  run-with-sudo apt-get install -y mpv
 elif [[ "$OSTYPE" == "darwin"* ]]; then
   brew update
   brew install mpv
 fi
 
-pip3 install --no-cache-dir -I -U --upgrade pip
-pip3 install --upgrade pirate-get
-pip3 install --upgrade subliminal
+run-with-sudo pip3 install --no-cache-dir -I -U --upgrade pip
+run-with-sudo pip3 install --upgrade pirate-get
+run-with-sudo pip3 install --upgrade subliminal
 
 npm install -g peerflix
 

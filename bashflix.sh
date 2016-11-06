@@ -5,15 +5,20 @@
 #
 
 request_query_raw=$1
+player=${2:-mpv}
+clean=${3}
 
 if [ -z "${request_query_raw}" ]; then
   echo "Search query is mandatory!"
   echo ""
-  echo "usage: $0 <movie name> | <serie name>.s<seasson>e<episode>"
+  echo "usage: $0 <search> [<player>] [<clean>]"
   echo ""
   echo "notes:"
+  echo "      <search> can be a <movie name> or <serie name>"
   echo "      <movie name> and <serie name> should avoid containing spaces, use dots (.) instead"
   echo "      <seasson> and <episode> should be zero padded, always have two digits"
+  echo "      <player> either mpv or vlc"
+  echo "      <clean> remove subtitle directory in the end"
   exit 1
 fi
 
@@ -35,16 +40,21 @@ request_query="${FUN_RET}"
 
 echo "Welcome to bashflix"
 
-tmp_dir="$(mktemp -d -t ${request_query})"
+echo "${request_query}"
+
+tmp_dir="${TMPDIR:-/tmp}/${request_query}"
+mkdir -p "${tmp_dir}"
 
 echo "Using ${tmp_dir} as temporary directory"
 
-function cleanup {
-  echo "Removing temporary directory ${tmp_dir}"
-  rm  -r ${tmp_dir}
-  echo "See you soon!"
-}
-trap cleanup EXIT
+if [ -n "${clean}" ]; then
+  function cleanup {
+    echo "Removing temporary directory ${tmp_dir}"
+    rm  -r ${tmp_dir}
+    echo "See you soon!"
+  }
+  trap cleanup EXIT
+fi
 
 retrieve-magnet() {
   local search_term=$1
@@ -82,7 +92,7 @@ get-subtitle() {
   local torrent_name="$1"
   local subtitle_filename=""
 
-  local languages=("en" "pt")
+  local languages=("pt" "en")
   for language in ${languages[@]}; do
     get-subtitle-file ${language} ${torrent_name}
 
@@ -114,13 +124,22 @@ torrent_name="${FUN_RET}"
 get-subtitle "${torrent_name}"
 subtitle="${FUN_RET}"
 
+case $player in
+vlc)
+  player_flag="-v"
+  subtitle_args=(-- --sub-file="${subtitle}")
+  ;;
+*)
+  player_flag="-k"
+  subtitle_args=(-t "${subtitle}")
+  ;;
+esac
+
 # Run with peerflix
 if [ -n "${subtitle}" ]; then
   echo "Playing ${torrent_name} with subtitles ${subtitle}"
-  # peerflix "${magnet_string}" -k -t "${subtitle}"
-  peerflix "${magnet_string}" -v -- --sub-file="${subtitle}"
+  peerflix "${magnet_string}" "${player_flag}" ${subtitle_args[@]}
 else
-  echo "Playing ${magnet_string}"
-  # peerflix "${magnet_string}" -k
-  peerflix "${magnet_string}" -v
+  echo "Playing ${torrent_name}"
+  peerflix "${magnet_string}" "${player_flag}"
 fi
