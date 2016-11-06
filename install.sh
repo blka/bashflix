@@ -85,6 +85,8 @@ run-with-sudo pip3 install --no-cache-dir -I -U --upgrade pip
 run-with-sudo pip3 install --upgrade pirate-get
 run-with-sudo pip3 install --upgrade subliminal
 
-npm install -g peerflix
+run-with-sudo npm install -g peerflix
 
 chmod u+x bashflix.sh
+
+sudo cp bashflix.sh /usr/local/bin/
