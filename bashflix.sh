@@ -18,7 +18,7 @@ if [ -z "${request_query_raw}" ]; then
   echo "      <movie name> and <serie name> should avoid containing spaces, use dots (.) instead"
   echo "      <seasson> and <episode> should be zero padded, always have two digits"
   echo "      <player> either mpv or vlc"
-  echo "      <clean> remove subtitle directory in the end"
+  echo "      <clean> remove torrent files and subtitles in the end"
   exit 1
 fi
 
@@ -39,22 +39,6 @@ clean-str "${request_query_raw}"
 request_query="${FUN_RET}"
 
 echo "Welcome to bashflix"
-
-echo "${request_query}"
-
-tmp_dir="${TMPDIR:-/tmp}/${request_query}"
-mkdir -p "${tmp_dir}"
-
-echo "Using ${tmp_dir} as temporary directory"
-
-if [ -n "${clean}" ]; then
-  function cleanup {
-    echo "Removing temporary directory ${tmp_dir}"
-    rm  -r ${tmp_dir}
-    echo "See you soon!"
-  }
-  trap cleanup EXIT
-fi
 
 retrieve-magnet() {
   local search_term=$1
@@ -81,20 +65,33 @@ retrieve-name-from-magnet() {
   FUN_RET="${torrent_name}"
 }
 
-get-subtitle-file() {
-  local language=$1
-  local torrent_name=$2
+retrieve-magnet-hash() {
+  local magnet_string=$1
 
-  subliminal download -l $language -d ${tmp_dir} ${torrent_name}
+  echo "Parsing torrent hash from magnet content"
+
+  local torrent_hash=$(echo "$magnet_string" | awk -F ":" '{print $4}' | awk -F "&" '{print $1}')
+
+  FUN_RET="${torrent_hash}"
+}
+
+get-subtitle-file() {
+  local language="$1"
+  local torrent_name="$2"
+  local tmp_dir="$3"
+
+  subliminal download -l "$language" -d "${tmp_dir}" "${torrent_name}"
 }
 
 get-subtitle() {
   local torrent_name="$1"
+  local tmp_dir="$2"
+
   local subtitle_filename=""
 
   local languages=("pt" "en")
   for language in ${languages[@]}; do
-    get-subtitle-file ${language} ${torrent_name}
+    get-subtitle-file "${language}" "${torrent_name}" "${tmp_dir}"
 
     subtitle_filename=$(find ${tmp_dir} -maxdepth 1 -name "*.srt" | head -1)
     if [ -n "$subtitle_filename" ]; then
@@ -120,8 +117,27 @@ fi
 retrieve-name-from-magnet "${magnet_string}"
 torrent_name="${FUN_RET}"
 
+# Get torrent hash from magnet
+retrieve-magnet-hash "${magnet_string}"
+torrent_hash="${FUN_RET}"
+
+tmp_dir="/tmp/torrent-stream/${torrent_hash}"
+
+mkdir -p "${tmp_dir}"
+
+echo "Using ${tmp_dir} as temporary directory"
+
+if [ -n "${clean}" ]; then
+  function cleanup {
+    echo "Removing temporary directory ${tmp_dir}"
+    rm  -r ${tmp_dir}
+    echo "See you soon!"
+  }
+  trap cleanup EXIT
+fi
+
 # Get subtitles
-get-subtitle "${torrent_name}"
+get-subtitle "${torrent_name}" "${tmp_dir}"
 subtitle="${FUN_RET}"
 
 case $player in

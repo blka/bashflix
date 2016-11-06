@@ -17,7 +17,7 @@ if [ -z "${password}" ]; then
   echo ""
   echo "notes: the password will be used to run apt-get and pip3 with sudo"
   echo ""
-  echo -n "Introduce your password: "
+  echo -n "Insert your password: "
   read -s password
   echo ""
 fi
