@@ -39,6 +39,11 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   if ! which brew &>/dev/null; then
     echo "Preparing to install Homebrew ..."
     /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    run-with-sudo brew install git
+  fi
+else 
+  if [[ "$OSTYPE" != "linux-gnu" ]]; then
+    run-with-sudo apt-get install -y git
   fi
 fi
 
