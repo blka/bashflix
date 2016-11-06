@@ -6,7 +6,7 @@ Linux/Mac OS X bash script to watch movies and series with subtitles, instantane
 **Demo (32s):** https://youtu.be/neA2PtCmY_U
 
 # Usage
-You can run it from anywhere. Just open terminal and then:
+You can run it from everywhere. Just open terminal (ctrl+alt+t) and type:
 
 **Example:** 
 ```
