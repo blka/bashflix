@@ -5,18 +5,22 @@
 #
 
 request_query_raw=$1
-player=${2:-mpv}
-clean=${3}
+language=${2}
+player=${3:-mpv}
+clean=${4}
+
+default_language="en"
 
 if [ -z "${request_query_raw}" ]; then
   echo "Search query is mandatory!"
   echo ""
-  echo "usage: $0 <search> [<player>] [<clean>]"
+  echo "usage: $0 <search> [<language>] [<player>] [<clean>]"
   echo ""
   echo "notes:"
   echo "      <search> can be a <movie name> or <serie name>"
   echo "      <movie name> and <serie name> should avoid containing spaces, use dots (.) instead"
   echo "      <seasson> and <episode> should be zero padded, always have two digits"
+  echo "      <language> defaults to en"
   echo "      <player> either mpv or vlc"
   echo "      <clean> remove torrent files and subtitles in the end"
   exit 1
@@ -88,20 +92,24 @@ get-subtitle() {
   local tmp_dir="$2"
 
   local subtitle_filename=""
+  local languages=()
 
-  local languages=("pt" "en")
+  if [ "${language}" != "${default_language}" ]; then
+    languages+=("${language}")  
+  fi
+  languages+=("${default_language}")
+
   for language in ${languages[@]}; do
     get-subtitle-file "${language}" "${torrent_name}" "${tmp_dir}"
 
-    subtitle_filename=$(find ${tmp_dir} -maxdepth 1 -name "*.srt" | head -1)
+    subtitle_filename=$(find ${tmp_dir} -maxdepth 1 -name "*${language}*.srt" | head -1)
     if [ -n "$subtitle_filename" ]; then
       echo "Found subtitle for language ${language}"
-      FUN_RET="${subtitle_filename}"
-      return 0;
+      break;
     fi
   done
 
-  FUN_RET=""
+  FUN_RET="${subtitle_filename}"
 }
 
 # Get magnet
@@ -137,8 +145,10 @@ if [ -n "${clean}" ]; then
 fi
 
 # Get subtitles
-get-subtitle "${torrent_name}" "${tmp_dir}"
-subtitle="${FUN_RET}"
+if [ -n "${language}" ]; then
+  get-subtitle "${torrent_name}" "${tmp_dir}"
+  subtitle="${FUN_RET}"
+fi
 
 case $player in
 vlc)
