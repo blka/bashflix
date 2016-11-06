@@ -37,6 +37,15 @@ If you input a language, the alterative is **en** in case your language was not 
 ## Linux (Ubuntu for example) and Mac OS
 Open terminal (ctrl+alt+t) and type:
 
+1. Make install.sh executable:
+    
+    ``` 
+    cd Downloads/bashflix-master
+    ``` 
+    ``` 
+    chmod u+x install.sh
+    ``` 
+
 1. Run install script:
   
   ```
