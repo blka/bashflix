@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-lang1="pt"
+lang1=$2
 lang2="en"
 
 get-subs () {
