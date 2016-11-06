@@ -28,11 +28,12 @@ bashflix.sh Movie.To.Watch
 # Installation and Configuration
 
 ## Linux (Ubuntu for example)
+Open terminal (ctrl+alt+t) and type:
 
 1. Make install-Linux.sh runnable:
   
   ```
-  cd bashflix-master
+  cd Downloads/bashflix-master
   ```
   ```
   chmod u+x install-Linux.sh
@@ -40,9 +41,9 @@ bashflix.sh Movie.To.Watch
 2. Run install script:
   
   ```
-  ./install-Linux.sh YOUR_UBUNTU_PASSWORD
+  ./install-Linux.sh YOUR_LINUX_PASSWORD
   ```
-  *Your ubuntu password is required because some programs can only be installed with it (sudo)*
+  *Your Linux password is required because some programs can only be installed with it (sudo)*
   
 Default languages are **pt** and the alternative is **en**. To change subtitles language, open *bashflix.sh* and change *lang1* and *lang2*. The alternative is for the case when your primary language is not found.
 
