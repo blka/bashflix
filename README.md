@@ -10,21 +10,21 @@ You can run it from everywhere. Just open terminal (ctrl+alt+t) and type:
 
 **Examples:** 
 ```
-bashflix The.Walking.Dead.S07E02 pt
+bashflix "The Walking Dead S07E02" pt
 ```
 ```
-bashflix Blood.Father fr
+bashflix "Blood Father" fr
 ```
 ```
-bashflix John.Wick.1080p
+bashflix "John Wick 1080p"
 ```
 **Format:** 
 ```
-bashflix Series.To.Watch.SXXEYY language
+bashflix "Series To Watch SXXEYY" language
 ```
 or
 ```
-bashflix Movie.To.Watch language
+bashflix "Movie To Watch" language
 ``` 
 
 If you do not input language, default is no language.
