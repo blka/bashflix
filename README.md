@@ -1,6 +1,6 @@
 # bashflix
 
-Linux/Mac OS bash script to watch movies and series with subtitles, instantaneously.
+Linux bash script to watch movies and series with subtitles, instantaneously.
 Just give the name, quickly grab your popcorn and start watching :) 
 
 ![](http://i.imgur.com/FX4bt1B.gif)
@@ -32,7 +32,7 @@ If you input a language, the alterative is **en** in case your language was not 
 
 # Installation and Configuration
 
-## Linux (Ubuntu for example) and Mac OS
+## Linux (Ubuntu for example)
 
 1. Open terminal (ctrl+alt+t) and type: 
   
