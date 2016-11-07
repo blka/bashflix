@@ -58,7 +58,7 @@ if ! which npm &>/dev/null; then
 fi
 
 echo "Looking for PIP3 ..."
-if ! which pip3 &>/dev/null; then
+if ! which python3 &>/dev/null; then
   echo "Preparing to install PIP3 ..."
   if [[ "$OSTYPE" == "linux-gnu" ]]; then
     run-with-sudo apt-get -y update
@@ -87,4 +87,4 @@ run-with-sudo npm install -g peerflix
 
 chmod u+x bashflix.sh
 
-run-with-sudo ln -s $(pwd)/bashflix.sh /usr/local/bin/bashflix
+run-with-sudo ln -fs $(pwd)/bashflix.sh /usr/local/bin/bashflix
