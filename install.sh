@@ -6,6 +6,8 @@
 # sudo removed in all the unnecessary commands
 #
 
+script_directory="$( cd "$( dirname "$0" )" && pwd )"
+
 password="${1}"
 
 if [ -z "${password}" ]; then
@@ -39,26 +41,23 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
     brew install git
   fi
-else 
-  if [[ "$OSTYPE" != "linux-gnu" ]]; then
-    run-with-sudo apt-get install -y git
-  fi
+elif [[ "$OSTYPE" == "linux-gnu" ]]; then
+  run-with-sudo apt-get update -y
+  run-with-sudo apt-get install -y git curl software-properties-common build-essential libssl-dev
 fi
 
 echo "Looking for NPM ..."
 if ! which npm &>/dev/null; then
   if [[ "$OSTYPE" == "linux-gnu" ]]; then
-    run-with-sudo apt-get -y update
-    run-with-sudo apt-get install npm -y
     curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -
-    run-with-sudo apt-get install nodejs -y
+    run-with-sudo apt-get install -y nodejs
   elif [[ "$OSTYPE" == "darwin"* ]]; then
     brew install npm
   fi
 fi
 
 echo "Looking for PIP3 ..."
-if ! which python3 &>/dev/null; then
+if ! which pip3 &>/dev/null; then
   echo "Preparing to install PIP3 ..."
   if [[ "$OSTYPE" == "linux-gnu" ]]; then
     run-with-sudo apt-get -y update
@@ -79,12 +78,12 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
   brew install mpv
 fi
 
-run-with-sudo python3 -m pip install --no-cache-dir -I -U --upgrade pip
+run-with-sudo python3 -m pip install --upgrade pip
 run-with-sudo python3 -m pip install --upgrade pirate-get
 run-with-sudo python3 -m pip install --upgrade subliminal
 
 run-with-sudo npm install -g peerflix
 
-chmod u+x bashflix.sh
+chmod +x ${script_directory}/bashflix.sh
 
-run-with-sudo ln -fs $(pwd)/bashflix.sh /usr/local/bin/bashflix
+run-with-sudo ln -fs ${script_directory}/bashflix.sh /usr/local/bin/bashflix
