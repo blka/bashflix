@@ -16,7 +16,7 @@ bashflix The.Walking.Dead.S07E02 pt
 bashflix Blood.Father fr
 ```
 ```
-bashflix John.Wick
+bashflix John.Wick.1080p
 ```
 **Format:** 
 ```
