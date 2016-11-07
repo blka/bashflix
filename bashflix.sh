@@ -49,7 +49,7 @@ retrieve-magnet() {
 
   echo "Downloading the best magnet for ${search_term}"
 
-  local magnet_string=$(pirate-get -s SeedersDsc -0 -C 'echo "%s"' ${search_term} | tail -n 1)
+  local magnet_string=$(pirate-get -s SeedersDsc -0 -C 'echo "%s"' "${search_term}" | tail -n 1)
 
   FUN_RET="${magnet_string}"
 }
@@ -95,7 +95,7 @@ get-subtitle() {
   local languages=()
 
   if [ "${language}" != "${default_language}" ]; then
-    languages+=("${language}")  
+    languages+=("${language}")
   fi
   languages+=("${default_language}")
 
