@@ -6,7 +6,7 @@ Just give the name, quickly grab your popcorn and start watching :)
 ![](http://i.imgur.com/FX4bt1B.gif)
 
 # Usage
-You can run it from everywhere. Just open terminal (ctrl+alt+t) and type:
+You can run it from everywhere. Just open terminal (ctrl+alt+t or ⌘+space, terminal) and type:
 
 **Examples:** 
 ```
