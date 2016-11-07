@@ -5,8 +5,6 @@ Just give the name, quickly grab your popcorn and start watching :)
 
 ![](http://i.imgur.com/FX4bt1B.gif)
 
-**Demo (32s):** https://youtu.be/neA2PtCmY_U
-
 # Usage
 You can run it from everywhere. Just open terminal (ctrl+alt+t) and type:
 
