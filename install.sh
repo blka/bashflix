@@ -6,8 +6,6 @@
 # sudo removed in all the unnecessary commands
 #
 
-set -e
-
 password="${1}"
 
 if [ -z "${password}" ]; then
@@ -81,9 +79,9 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
   brew install mpv
 fi
 
-run-with-sudo pip3 install --no-cache-dir -I -U --upgrade pip
-run-with-sudo pip3 install --upgrade pirate-get
-run-with-sudo pip3 install --upgrade subliminal
+run-with-sudo python3 -m pip install --no-cache-dir -I -U --upgrade pip
+run-with-sudo python3 -m pip install --upgrade pirate-get
+run-with-sudo python3 -m pip install --upgrade subliminal
 
 run-with-sudo npm install -g peerflix
 
