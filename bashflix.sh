@@ -24,6 +24,15 @@ if [ -z "${request_query_raw}" ]; then
   echo "      <player> either mpv or vlc"
   echo "      <clean> remove torrent files and subtitles in the end"
   exit 1
+else
+  if [ "$1" == "-h" ]; then
+    echo "$(cat /home/$USER/history.txt)"
+    exit 1
+  else
+    #echo "$(cat /home/$USER/history.txt)$1" > /home/$USER/history.txt
+
+    echo -e "$request_query_raw" >> /home/$USER/history.txt
+  fi
 fi
 
 # HACK

@@ -87,3 +87,4 @@ run-with-sudo npm install -g peerflix
 chmod +x ${script_directory}/bashflix.sh
 
 run-with-sudo ln -fs ${script_directory}/bashflix.sh /usr/local/bin/bashflix
+run-with-sudo echo >/home/$USER/history.txt
