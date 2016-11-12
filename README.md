@@ -26,6 +26,10 @@ or
 ```
 bashflix "Movie To Watch" language
 ``` 
+**History:**
+```
+bashflix -h
+```
 
 If you do not input language, default is no language.
 If you input a language, the alterative is **en** in case your language was not found.
