@@ -13,9 +13,7 @@ password="${1}"
 if [ -z "${password}" ]; then
   echo "Password is mandatory!"
   echo ""
-  echo "usage: $0 <password>"
-  echo ""
-  echo "notes: the password will be used to run apt-get and pip3 with sudo"
+  echo "notes: the password will be used to install third-party software (run apt and pip3 with sudo)"
   echo ""
   echo -n "Insert your password: "
   read -s password
@@ -46,25 +44,22 @@ elif [[ "$OSTYPE" == "linux-gnu" ]]; then
   run-with-sudo apt-get install -y git curl software-properties-common build-essential libssl-dev
 fi
 
-echo "Looking for NPM ..."
-if ! which npm &>/dev/null; then
-  if [[ "$OSTYPE" == "linux-gnu" ]]; then
-    curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -
-    run-with-sudo apt-get install -y nodejs
-  elif [[ "$OSTYPE" == "darwin"* ]]; then
-    brew install npm
-  fi
+
+
+if [[ "$OSTYPE" == "linux-gnu" ]]; then
+  run-with-sudo apt-get install -y python-software-properties
+  curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -
+  run-with-sudo apt-get install -y nodejs
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+  brew install npm
 fi
 
-echo "Looking for PIP3 ..."
-if ! which pip3 &>/dev/null; then
-  echo "Preparing to install PIP3 ..."
-  if [[ "$OSTYPE" == "linux-gnu" ]]; then
-    run-with-sudo apt-get -y update
-    run-with-sudo apt-get install -y python3 python3-pip
-  elif [[ "$OSTYPE" == "darwin"* ]]; then
-    brew install python3
-  fi
+echo "Preparing to install PIP3 ..."
+if [[ "$OSTYPE" == "linux-gnu" ]]; then
+ run-with-sudo apt-get -y update
+ run-with-sudo apt-get install -y python3 python3-pip
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+ brew install python3
 fi
 
 echo "Preparing to install MPV ..."
