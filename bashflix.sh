@@ -26,12 +26,12 @@ if [ -z "${request_query_raw}" ]; then
   exit 1
 else
   if [ "$1" == "-h" ]; then
-    echo "$(cat /home/$USER/history.txt)"
+    echo "$(cat $HOME/.bashflix_history)"
     exit 1
   else
-    #echo "$(cat /home/$USER/history.txt)$1" > /home/$USER/history.txt
+    #echo "$(cat $HOME/.bashflix_history)$1" > $HOME/.bashflix_history
 
-    echo -e "$request_query_raw" >> /home/$USER/history.txt
+    echo -e "$request_query_raw" >> $HOME/.bashflix_history
   fi
 fi
 
