@@ -5,7 +5,7 @@ Watch movies and TV shows on Linux/Mac OS X, with subtitles, instantaneously. Ju
 ![](http://i.imgur.com/FX4bt1B.gif)
 
 # Usage
-You can run it from everywhere. Just open terminal (ctrl+alt+t or ⌘+space, terminal) and type:
+Once installed, you can run it from everywhere. Just open terminal (ctrl+alt+t or ⌘+space, terminal) and type:
 
 **Examples:** 
 ```
