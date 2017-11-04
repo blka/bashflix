@@ -1,6 +1,6 @@
 # bashflix
 
-Watch movies and TV shows on Linux/Mac OS X, with subtitles, instantaneously. Just give the name, quickly grab your popcorn and have fun!
+Watch movies and TV shows on Mac OS X/Ubuntu, with subtitles, instantaneously. Just give the name, quickly grab your popcorn and have fun!
 
 ![](http://i.imgur.com/FX4bt1B.gif)
 
