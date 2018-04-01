@@ -1,4 +1,4 @@
-# bashflix [![Build Status](https://travis-ci.org/astavares/bashflix.svg?branch=master)](https://travis-ci.org/astavares/bashflix)[![Coverage Status](https://coveralls.io/repos/github/astavares/bashflix/badge.svg?branch=master)](https://coveralls.io/github/astavares/bashflix?branch=master) 
+# bashflix [![Build Status](https://travis-ci.org/astavares/bashflix.svg?branch=master)](https://travis-ci.org/astavares/bashflix) [![Coverage Status](https://coveralls.io/repos/github/astavares/bashflix/badge.svg?branch=master)](https://coveralls.io/github/astavares/bashflix?branch=master) 
 
 Watch movies and TV shows on Mac OS X/Ubuntu, with subtitles, instantaneously. Just give the name, quickly grab your popcorn and have fun!
 
