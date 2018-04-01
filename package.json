@@ -1,0 +1,27 @@
+{
+  "name": "tobflix",
+  "version": "1.0.0",
+  "description": "Watch movies and TV shows on Windows/Mac OS X/Ubuntu, with subtitles, instantaneously. Just type the name, quickly grab your popcorn and have fun!",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --reporter spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/astavares/bashflix.git"
+  },
+  "keywords": [
+    "video",
+    "streaming"
+  ],
+  "author": "Andre Tavares <astavares4@gmail.com> (https://github.com/astavares/bashflix)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/astavares/bashflix/issues"
+  },
+  "homepage": "https://github.com/astavares/bashflix#readme",
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^5.0.5"
+  }
+}
