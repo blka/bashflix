@@ -60,6 +60,12 @@ retrieve-magnet() {
 
   local magnet_string=$(pirate-get -s SeedersDsc -0 -C 'echo "%s"' "${search_term}" | tail -n 1)
 
+  if [ "${magnet_string}" = "No results" ]
+  then
+    echo "Pirate Bay. DOWN ;,( Trying ragrbg.org:"
+    magnet_string=$(rarbgapi --search-string "${search_term}" | tail -n 1 | sed -n 's/^.*magnet:?/magnet:?/p')
+  fi
+
   FUN_RET="${magnet_string}"
 }
 
