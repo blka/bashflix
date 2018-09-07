@@ -7,7 +7,8 @@
 request_query_raw=$1
 language=${2}
 player=${3:-mpv}
-clean=${4}
+website=${4:-pirate_bay}
+clean=${5}
 
 default_language="en"
 
@@ -58,11 +59,15 @@ retrieve-magnet() {
 
   echo "Downloading the best magnet for ${search_term}"
 
-  local magnet_string=$(pirate-get -s SeedersDsc -0 -C 'echo "%s"' "${search_term}" | tail -n 1)
+  local magnet_string=""
 
-  if [ "${magnet_string}" = "No results" ]
+  if [ "${website}" == "pirate_bay" ]
   then
-    echo "Pirate Bay. DOWN ;,( Trying ragrbg.org:"
+    magnet_string=$(pirate-get -s SeedersDsc -0 -C 'echo "%s"' "${search_term}" | tail -n 1)
+  fi
+
+  if [ "${website}" == "rarbg" ] || [ "${magnet_string}" = "No results" ]
+  then
     magnet_string=$(rarbgapi --search-string "${search_term}" | tail -n 1 | sed -n 's/^.*magnet:?/magnet:?/p')
   fi
 
