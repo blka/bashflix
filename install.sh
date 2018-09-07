@@ -47,8 +47,8 @@ fi
 
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
-  run-with-sudo apt-get install -y python-software-properties
-  curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -
+  run-with-sudo apt-get install -y software-properties-common
+  curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
   run-with-sudo apt-get install -y nodejs
 elif [[ "$OSTYPE" == "darwin"* ]]; then
   brew install npm
@@ -76,6 +76,12 @@ fi
 run-with-sudo python3 -m pip install --upgrade pip
 run-with-sudo python3 -m pip install --upgrade pirate-get
 run-with-sudo python3 -m pip install --upgrade subliminal
+# TODO: Install rarbgapi through pip when there's a stable package there
+run-with-sudo git clone https://github.com/verybada/rarbgapi.git
+cd rarbgapi
+run-with-sudo python3 setup.py install
+cd ..
+run-with-sudo rm -r rarbgapi
 
 run-with-sudo npm install -g peerflix
 
