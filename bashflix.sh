@@ -6,7 +6,7 @@
 
 request_query_raw=$1
 language=${2}
-player=${3:-mpv}
+player=${3:-vlc}
 clean=${4}
 
 default_language="en"
