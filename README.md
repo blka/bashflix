@@ -1,14 +1,14 @@
 # bashflix
-Watch movies and TV shows on Mac OS X/Ubuntu, with subtitles, instantaneously. Just give the name, quickly grab your popcorn and have fun!
+Watch movies and TV shows on Mac OS X / Ubuntu, with subtitles, instantaneously. Just give the name, quickly grab your popcorn and have fun!
 
 ![](http://i.imgur.com/FX4bt1B.gif)
 
 # Usage
-Once installed, you can run it from everywhere. Just open terminal (ctrl+alt+t or ⌘+space, terminal) and type:
+Once installed, you can run it from everywhere. Just open terminal (```⌘+space, then type terminal``` or ```ctrl+alt+t```) and type:
 
 **Examples:**
 ```
-bashflix "The Walking Dead S07E02" pt
+bashflix "the walking dead s07e02" pt
 ```
 ```
 bashflix "Blood Father" fr
@@ -18,7 +18,7 @@ bashflix "John Wick 1080p"
 ```
 **Format:**
 ```
-bashflix "Series To Watch SXXEYY" language
+bashflix "Series To Watch sXXeYY" language
 ```
 or
 ```
@@ -28,6 +28,8 @@ bashflix "Movie To Watch" language
 ```
 bashflix -h
 ```
+**Subtitles Tip:** 
+If the subtitles are not synced, use ```z``` to speed it up or ```x``` to delay it
 
 If you do not input language, default is no language.
 If you input a language, the alterative is **en** in case your language was not found.
@@ -36,7 +38,7 @@ If you input a language, the alterative is **en** in case your language was not 
 
 ## Linux (Ubuntu for example) and Mac OS X
 
-1. After you download the zip and extract its content to the folder *Downloads*, open terminal (ctrl+alt+t or ⌘+space) and type:
+1. After you download the zip and extract its content to the folder ```Downloads```, open terminal (```⌘+space, then type terminal``` or ```ctrl+alt+t```) and type:
 
   ```
   cd Downloads/bashflix-master
