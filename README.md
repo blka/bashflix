@@ -33,10 +33,7 @@ bashflix -h
 If the subtitles are not synced, use ```z``` to speed it up or ```x``` to delay it
 
 **Notes:** 
-1. If any error occur, a simple fix could be just run again:
-```
-./install.sh
-```
+1. If any error occur, a simple fix could be just install again.
 2. If you do not input language, default is no language.
 If you input a language, the alterative is **en** in case your language was not found.
 
