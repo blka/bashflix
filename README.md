@@ -28,17 +28,27 @@ bashflix "Movie To Watch" language
 ```
 bashflix -h
 ```
+
 **Subtitles Tip:** 
 If the subtitles are not synced, use ```z``` to speed it up or ```x``` to delay it
 
-**Note:** 
-If you do not input language, default is no language.
+**Notes:** 
+1. If any error occur, a simple fix could be just run again:
+```
+./install.sh
+```
+2. If you do not input language, default is no language.
 If you input a language, the alterative is **en** in case your language was not found.
 
 # Installation
 Open terminal (```⌘+space```, then type ```terminal```, or ```ctrl+alt+t```) and run this:
 ```
 git clone https://github.com/astavares/bashflix.git && cd bashflix && ./install.sh
+```
+**Note:** 
+If any error occur, a simple fix could be just run again:
+```
+./install.sh
 ```
 
 **Advanced config:** 
