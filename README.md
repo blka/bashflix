@@ -36,6 +36,7 @@ If you do not input language, default is no language.
 If you input a language, the alterative is **en** in case your language was not found.
 
 # Installation
+Open terminal (```⌘+space```, then type ```terminal```, or ```ctrl+alt+t```) and run this:
 ```
 git clone https://github.com/astavares/bashflix.git && cd bashflix && ./install.sh
 ```
