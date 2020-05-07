@@ -8,10 +8,7 @@ Once installed:
 1. Open terminal (```⌘+space```, then type ```terminal```, or ```ctrl+alt+t```)
 2. Type (format and example):
 ```
-bashflix "Series To Watch sXXeYY" language
-```
-```
-bashflix "Movie To Watch" language
+bashflix "movie / tv series sXXeYY" language
 ```
 ```
 bashflix "westworld s03e01 1080p" pt
@@ -33,7 +30,7 @@ bashflix -h
 git clone https://github.com/astavares/bashflix.git && cd bashflix && ./install.sh
 ```
 3. Input your system password and press ENTER (sudo required);
-4. Wait a few minutes.
+4. Wait a few minutes until it finishes. If it fails, repeat.
 
 # Not working?
 Try install bashflix again, usually it works :)
