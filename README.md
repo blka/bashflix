@@ -18,16 +18,13 @@ bashflix "westworld s03e01 1080p" pt
 Tips:
 1. If subtitles are not synced, use ```z``` to speed it up or ```x``` to delay it.
 2. Double click to full screen.
-3. What did I watched?
-```
-bashflix -h
-```
+3. What did I watched? ```bashflix -h```
 
 # How to install?
 1. Open terminal (```⌘+space```, then type ```terminal```, or ```ctrl+alt+t```);
 2. Copy & Paste the following command into the terminal and then press ENTER:
 ```
-git clone https://github.com/astavares/bashflix.git && cd bashflix && ./install.sh
+rm -rf bashflix && git clone https://github.com/astavares/bashflix.git && cd bashflix && ./install.sh
 ```
 3. Input your system password and press ENTER (sudo required);
 4. Wait a few minutes until it finishes. If it fails, repeat.
@@ -36,5 +33,4 @@ git clone https://github.com/astavares/bashflix.git && cd bashflix && ./install.
 Try install bashflix again, usually it works :)
 
 # How it works?
-
 It combines [**pirate-get**](https://github.com/vikstrous/pirate-get) and [**rarbgapi**](https://pypi.org/project/RarbgAPI/) for torrent search, [**peerflix**](https://github.com/mafintosh/peerflix) for torrent streaming, and [**subliminal**](https://github.com/Diaoul/subliminal) for subtitles
