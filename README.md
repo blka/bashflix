@@ -18,17 +18,14 @@ bashflix "Movie To Watch" language
 bashflix "Mr Robot 1080p s02e02" pt
 ```
 
-**Not working?** Install bashflix again.
-
 **Usage history:**
 ```
 bashflix -h
 ```
 
-
-**Subtitles Tip:** 
-If the subtitles are not synced, use ```z``` to speed it up or ```x``` to delay it.
-
+**Tips:** 
+1. If subtitles are not synced, use ```z``` to speed it up or ```x``` to delay it.
+2. Double click to full screen.
 
 # Installation
 1. Open terminal (```⌘+space```, then type ```terminal```, or ```ctrl+alt+t```);
@@ -38,6 +35,9 @@ git clone https://github.com/astavares/bashflix.git && cd bashflix && ./install.
 ```
 3. Input your system password and press ENTER (sudo required);
 4. Wait a few minutes.
+
+# Not working?
+Try install bashflix again, usually it works :)
 
 # How it works?
 
