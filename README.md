@@ -15,7 +15,7 @@ bashflix "westworld s03e01 1080p" pt
 ```
 3. Wait a few seconds for the player to open.
 
-Tips:
+# Tips
 1. Stuck? ```ctrl+c``` and try again, usually it works :)
 2. Fullscreen? Double click on the image.
 3. Subtitles not synced? Use ```z``` to speed it up or ```x``` to delay it.
