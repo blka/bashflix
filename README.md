@@ -32,6 +32,11 @@ rm -rf bashflix && git clone https://github.com/astavares/bashflix.git && cd bas
 
 # Not working?
 Try install bashflix again, usually it works :)
+CONTRIBUTIONS ARE WELCOME! (PR)
 
 # How it works?
 It combines [**pirate-get**](https://github.com/vikstrous/pirate-get) and [**rarbgapi**](https://pypi.org/project/RarbgAPI/) for torrent search, [**webtorrent**](https://github.com/webtorrent/webtorrent) for torrent streaming, and [**subliminal**](https://github.com/Diaoul/subliminal) for subtitles
+
+
+# License
+This project is licensed under the terms of the [MIT license](https://github.com/astavares/bashflix/blob/master/LICENSE.md).
