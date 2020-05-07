@@ -35,7 +35,7 @@ Try install bashflix again, usually it works :)
 CONTRIBUTIONS ARE WELCOME! (PR)
 
 # How it works?
-It combines [**pirate-get**](https://github.com/vikstrous/pirate-get) and [**rarbgapi**](https://pypi.org/project/RarbgAPI/) for torrent search, [**webtorrent**](https://github.com/webtorrent/webtorrent) for torrent streaming, and [**subliminal**](https://github.com/Diaoul/subliminal) for subtitles
+It combines [**pirate-get**](https://github.com/vikstrous/pirate-get), [**rarbgapi**](https://pypi.org/project/RarbgAPI/) and [**we-get**](https://github.com/rachmadaniHaryono/we-get) for torrent search, [**webtorrent**](https://github.com/webtorrent/webtorrent) for torrent streaming, and [**subliminal**](https://github.com/Diaoul/subliminal) for subtitles
 
 
 # License
