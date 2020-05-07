@@ -19,7 +19,7 @@ bashflix "westworld s03e01 1080p" pt
 1. Stuck? ```ctrl+c``` and try again, usually it works :)
 2. Fullscreen? Double click on the image.
 3. Subtitles not synced? Use ```z``` to speed it up or ```x``` to delay it.
-4. What did I watched? ```bashflix -h```
+4. What did I watch? ```bashflix -h```
 
 # How to install?
 1. Open terminal (```⌘+space```, then type ```terminal```, or ```ctrl+alt+t```);
