@@ -3,7 +3,7 @@ Watch movies and TV shows on Mac OS X and Linux, with subtitles, instantaneously
 
 ![](https://media.giphy.com/media/mACRrW4R25kuQLexXn/giphy.gif)
 
-# Usage
+# How to use?
 Once installed, open terminal (```⌘+space```, then type ```terminal```, or ```ctrl+alt+t```) and type:
 
 ```
@@ -18,16 +18,15 @@ bashflix "Movie To Watch" language
 bashflix "Mr Robot 1080p s02e02" pt
 ```
 
-**Usage history:**
+**Tips:** 
+1. If subtitles are not synced, use ```z``` to speed it up or ```x``` to delay it.
+2. Double click to full screen.
+3. What did I watched?
 ```
 bashflix -h
 ```
 
-**Tips:** 
-1. If subtitles are not synced, use ```z``` to speed it up or ```x``` to delay it.
-2. Double click to full screen.
-
-# Installation
+# How to install?
 1. Open terminal (```⌘+space```, then type ```terminal```, or ```ctrl+alt+t```);
 2. Copy & Paste the following command into the terminal and then press ENTER:
 ```
