@@ -87,6 +87,8 @@ run-with-sudo npm install -g peerflix
 
 run-with-sudo npm install webtorrent-cli -g
 
+run-with-sudo pip install git+https://github.com/rachmadaniHaryono/we-get
+
 chmod +x ${script_directory}/bashflix.sh
 
 run-with-sudo ln -fs ${script_directory}/bashflix.sh /usr/local/bin/bashflix

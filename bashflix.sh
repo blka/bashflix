@@ -57,19 +57,24 @@ echo "Welcome to bashflix"
 retrieve-magnet() {
   local search_term=$1
 
-  echo "Downloading the best magnet for ${search_term}"
+  echo "Searching the best magnet for ${search_term}..."
 
   local magnet_string=""
 
-  if [ "${website}" == "pirate_bay" ]
-  then
-    magnet_string=$(pirate-get -s SeedersDsc -0 -C 'echo "%s"' "${search_term}" | tail -n 1)
-  fi
+  echo "Searching on The Pirate Bay..."
+  magnet_string=$(pirate-get -s SeedersDsc -0 -C 'echo "%s"' "${search_term}" | tail -n 1)
 
-  if [ "${website}" == "rarbg" ] || [ "${magnet_string}" = "No results" ]
-  then
+  if [[ ${magnet_string} != *"magnet"* ]]; then
+    echo "Not Found. Searching on RARBG..."
     magnet_string=$(rarbgapi --search-string "${search_term}" | tail -n 1 | sed -n 's/^.*magnet:?/magnet:?/p')
   fi
+
+  if [[ ${magnet_string} != *"magnet"* ]]; then
+    echo "Not Found. Searching using we-get..."
+    magnet_string=$(we-get --search "${search_term}" --target  the_pirate_bay,1337x -L | tail -n 1 | sed -n 's/^.*magnet:?/magnet:?/p')
+  fi
+
+  echo "magnet_string: ${magnet_string}"
 
   FUN_RET="${magnet_string}"
 }
