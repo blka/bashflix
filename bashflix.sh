@@ -182,10 +182,19 @@ vlc)
 esac
 
 # Run with peerflix
+#if [ -n "${subtitle}" ]; then
+#  echo "Playing ${torrent_name} with subtitles ${subtitle}"
+#  peerflix "${magnet_string}" "${player_flag}" ${subtitle_args[@]}
+#else
+#  echo "Playing ${torrent_name}"
+#  peerflix "${magnet_string}" "${player_flag}"
+#fi
+
+# Run with webtorrent
 if [ -n "${subtitle}" ]; then
   echo "Playing ${torrent_name} with subtitles ${subtitle}"
-  peerflix "${magnet_string}" "${player_flag}" ${subtitle_args[@]}
+  webtorrent download "${magnet_string}" --mpv -t ${subtitle}
 else
   echo "Playing ${torrent_name}"
-  peerflix "${magnet_string}" "${player_flag}"
+  webtorrent download "${magnet_string}" --mpv
 fi
