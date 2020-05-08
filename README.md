@@ -30,7 +30,7 @@ bashflix "westworld s03e01 1080p" pt
 cd ~ && rm -rf bashflix && git clone https://github.com/astavares/bashflix.git && cd bashflix && ./install.sh
 ```
 3. Input your system password and press ENTER (sudo required);
-4. Wait a few minutes until it finishes. If it fails, repeat.
+4. Wait a few minutes until it finishes.
 
 # Not working?
 Try install bashflix again, usually it works :)
