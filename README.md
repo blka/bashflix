@@ -9,7 +9,10 @@ Once installed:
 2. Type ```bashflix "movie / tv series sXXeYY" language``` in the terminal and press ENTER:
 3. Wait a few seconds for the player to open.
 
-Example:
+Examples:
+```
+bashflix "jumanji next level"
+```
 ```
 bashflix "westworld s03e01 1080p" pt
 ```
