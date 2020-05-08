@@ -6,14 +6,16 @@ Watch movies and TV shows on Mac OS X and Linux, with subtitles, instantaneously
 # How to use?
 Once installed:
 1. Open terminal (```⌘+space```, then type ```terminal```, or ```ctrl+alt+t```)
-2. Type the following command (format and example) in the terminal and press ENTER:
+2. Type ```bashflix "movie / tv series sXXeYY" language``` in the terminal and press ENTER:
+3. Wait a few seconds for the player to open.
+
+Examples:
 ```
-bashflix "movie / tv series sXXeYY" language
+bashflix "jumanji next level"
 ```
 ```
 bashflix "westworld s03e01 1080p" pt
 ```
-3. Wait a few seconds for the player to open.
 
 # Tips
 1. Stuck? ```ctrl+c``` and try again, usually it works :)
@@ -28,14 +30,13 @@ bashflix "westworld s03e01 1080p" pt
 cd ~ && rm -rf bashflix && git clone https://github.com/astavares/bashflix.git && cd bashflix && ./install.sh
 ```
 3. Input your system password and press ENTER (sudo required);
-4. Wait a few minutes until it finishes. If it fails, repeat.
+4. Wait a few minutes until it finishes.
 
 # Not working?
 Try install bashflix again, usually it works :)
-CONTRIBUTIONS ARE WELCOME! (PR)
 
 # How it works?
-It combines [**pirate-get**](https://github.com/vikstrous/pirate-get) and [**rarbgapi**](https://pypi.org/project/RarbgAPI/) for torrent search, [**webtorrent**](https://github.com/webtorrent/webtorrent) for torrent streaming, and [**subliminal**](https://github.com/Diaoul/subliminal) for subtitles
+It combines [**pirate-get**](https://github.com/vikstrous/pirate-get), [**rarbgapi**](https://pypi.org/project/RarbgAPI/) and [**we-get**](https://github.com/rachmadaniHaryono/we-get) for torrent search, [**webtorrent**](https://github.com/webtorrent/webtorrent) for torrent streaming, and [**subliminal**](https://github.com/Diaoul/subliminal) for subtitles
 
 
 # License
