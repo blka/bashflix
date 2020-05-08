@@ -6,14 +6,13 @@ Watch movies and TV shows on Mac OS X and Linux, with subtitles, instantaneously
 # How to use?
 Once installed:
 1. Open terminal (```⌘+space```, then type ```terminal```, or ```ctrl+alt+t```)
-2. Type the following command (format and example) in the terminal and press ENTER:
-```
-bashflix "movie / tv series sXXeYY" language
-```
+2. Type ```bashflix "movie / tv series sXXeYY" language``` in the terminal and press ENTER:
+3. Wait a few seconds for the player to open.
+
+Example:
 ```
 bashflix "westworld s03e01 1080p" pt
 ```
-3. Wait a few seconds for the player to open.
 
 # Tips
 1. Stuck? ```ctrl+c``` and try again, usually it works :)
