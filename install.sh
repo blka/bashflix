@@ -1,15 +1,6 @@
 #!/usr/bin/env bash
-
-#
-# Bashflix Installer Mac OS and Ubuntu
-#
-# sudo removed in all the unnecessary commands
-#
-
 script_directory="$( cd "$( dirname "$0" )" && pwd )"
-
 password="${1}"
-
 if [ -z "${password}" ]; then
   echo "Password is mandatory!"
   echo ""
@@ -19,19 +10,15 @@ if [ -z "${password}" ]; then
   read -s password
   echo ""
 fi
-
 run-with-sudo() {
   echo "${password}" | sudo -S ${@}
 }
-
 echo "Checking OS ..."
 if [[ "$OSTYPE" != "linux-gnu" ]] && [[ "$OSTYPE" != "darwin"* ]]; then
   echo "Only Mac OS and Ubuntu are supported at the moment."
   exit 1
 fi
-
 echo "Checking bashflix requirements ..."
-
 if [[ "$OSTYPE" == "darwin"* ]]; then
   echo "Looking for Homebrew ..."
   if ! which brew &>/dev/null; then
@@ -43,9 +30,6 @@ elif [[ "$OSTYPE" == "linux-gnu" ]]; then
   run-with-sudo apt-get update -y
   run-with-sudo apt-get install -y git curl software-properties-common build-essential libssl-dev
 fi
-
-
-
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
   run-with-sudo apt-get install -y software-properties-common
   curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
@@ -53,7 +37,6 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
 elif [[ "$OSTYPE" == "darwin"* ]]; then
   brew install npm
 fi
-
 echo "Preparing to install PIP3 ..."
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
  run-with-sudo apt-get -y update
@@ -61,7 +44,6 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
 elif [[ "$OSTYPE" == "darwin"* ]]; then
  brew install python3
 fi
-
 echo "Preparing to install MPV ..."
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
   run-with-sudo add-apt-repository -y ppa:mc3man/mpv-tests
@@ -72,7 +54,6 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
   brew update
   brew install mpv
 fi
-
 run-with-sudo python3 -m pip install --upgrade pip
 run-with-sudo python3 -m pip install --upgrade pirate-get
 run-with-sudo python3 -m pip install --upgrade subliminal
@@ -82,14 +63,10 @@ cd rarbgapi
 run-with-sudo python3 setup.py install
 cd ..
 run-with-sudo rm -r rarbgapi
-
+run-with-sudo npm install npm@latest -g
 run-with-sudo npm install -g peerflix
-
 run-with-sudo npm install webtorrent-cli -g
-
 run-with-sudo pip install git+https://github.com/rachmadaniHaryono/we-get
-
 chmod +x ${script_directory}/bashflix.sh
-
 run-with-sudo ln -fs ${script_directory}/bashflix.sh /usr/local/bin/bashflix
 run-with-sudo echo >$HOME/.bashflix_history
