@@ -63,10 +63,11 @@ fi
 
 echo "Streaming ${torrent_name} with ${subtitle}..."
 if [ -n "${subtitle}" ]; then
-  peerflix ${magnet} -k -t ${subtitle}
+  peerflix ${magnet} --subtitles ${subtitle} --vlc -- --fullscreen 
 else
-  peerflix ${magnet} -k
+  peerflix ${magnet} --vlc -- --fullscreen
 fi
+
 #if [ -n "${subtitle}" ]; then
 #  webtorrent download ${magnet} --mpv -t ${subtitle}
 #else

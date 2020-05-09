@@ -13,12 +13,10 @@ fi
 run-with-sudo() {
   echo "${password}" | sudo -S ${@}
 }
-echo "Checking OS ..."
 if [[ "$OSTYPE" != "linux-gnu" ]] && [[ "$OSTYPE" != "darwin"* ]]; then
   echo "Only Mac OS and Ubuntu are supported at the moment."
   exit 1
 fi
-echo "Checking bashflix requirements ..."
 if [[ "$OSTYPE" == "darwin"* ]]; then
   echo "Looking for Homebrew ..."
   if ! which brew &>/dev/null; then
@@ -34,11 +32,11 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
   run-with-sudo apt-get install -y software-properties-common
   curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
   run-with-sudo apt-get install -y nodejs
+  run-with-sudo apt-get install -y vlc
 elif [[ "$OSTYPE" == "darwin"* ]]; then
   brew upgrade node
   brew install npm
 fi
-echo "Preparing to install PIP3 ..."
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
  run-with-sudo apt-get -y update
  run-with-sudo apt-get install -y python3 python3-pip
@@ -47,7 +45,7 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
  brew upgrade python
  brew install python3
 fi
-echo "Preparing to install MPV ..."
+
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
   run-with-sudo add-apt-repository -y ppa:mc3man/mpv-tests
   run-with-sudo apt-get -y update
@@ -57,6 +55,7 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
   brew update
   brew upgrade mpv
   brew install mpv
+  brew cask install vlc
 fi
 run-with-sudo python3 -m pip install --upgrade pip
 run-with-sudo python3 -m pip install --upgrade pirate-get
