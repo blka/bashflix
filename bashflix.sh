@@ -1,6 +1,4 @@
 #!/usr/bin/env bash
-language=${2}
-
 if [ "$1" == "-h" ]; then
   echo "$(cat $HOME/.bashflix_history)"
   exit 0
@@ -40,7 +38,7 @@ if [[ ${magnet} != *"magnet"* ]]; then
   exit 1
 fi
 
-echo "Searching for subtitles..."
+language=${2}
 torrent_name_param=$(awk -F "&" '{print $2}' <<< "$magnet")
 torrent_name_dirty=$(awk -F "=" '{print $2}' <<< "$torrent_name_param")
 torrent_name_raw=$(echo "$torrent_name_dirty" | sed -e 's/%\([0-9A-F][0-9A-F]\)/\\\\\x\1/g')
@@ -61,8 +59,13 @@ if [ -n "${language}" ]; then
 fi
 
 echo "Streaming ${torrent_name}..."
+#if [ -n "${language}" ]; then
+#  webtorrent download ${magnet} --mpv -t ${subtitle}
+#else
+#  webtorrent download ${magnet} --mpv
+#fi
 if [ -n "${subtitle}" ]; then
-  webtorrent download "${magnet}" --mpv -t ${subtitle}
+  peerflix ${magnet} -k -t ${subtitle}
 else
-  webtorrent download "${magnet}" --mpv
+  peerflix ${magnet} -k
 fi
