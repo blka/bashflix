@@ -19,7 +19,7 @@ bashflix "westworld s03e01 720p" pt
 
 Tips:
 1. Stuck? ```ctrl+c``` and try again, usually it works :)
-3. Subtitles not synced? Use ```z``` to speed it up or ```x``` to delay it.
+3. Subtitles not synced? Use ```h``` to speed it up or ```g``` to delay it.
 4. Stopping? ```space``` to PAUSE, wait a few minutes and ```space``` to PLAY.
 5. What did I watch? ```bashflix -h```
 
