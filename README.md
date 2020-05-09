@@ -36,7 +36,7 @@ cd ~ && rm -rf bashflix && git clone https://github.com/astavares/bashflix.git &
 Try install bashflix again, usually it works :)
 
 ## How it works?
-It uses [**pirate-get**](https://github.com/vikstrous/pirate-get), [**rarbgapi**](https://github.com/verybada/rarbgapi) and [**we-get**](https://github.com/rachmadaniHaryono/we-get) for torrent search, [**webtorrent**](https://github.com/webtorrent/webtorrent) and [**vlc**](https://github.com/videolan/vlc) for torrent streaming and playing,  and [**subliminal**](https://github.com/Diaoul/subliminal) for subtitles.
+It uses [**pirate-get**](https://github.com/vikstrous/pirate-get), [**rarbgapi**](https://github.com/verybada/rarbgapi) and [**we-get**](https://github.com/rachmadaniHaryono/we-get) for torrent search, [**peerflix**](https://github.com/mafintosh/peerflix) and [**vlc**](https://github.com/videolan/vlc) for torrent streaming and playing,  and [**subliminal**](https://github.com/Diaoul/subliminal) for subtitles.
 
 ## Disclaimer
 bashflix is under development. Best efford approch is used. Most of the times bashflix will work. Random errors will occur. Unavailability issues will occur. Some torrents and subtitles will not be found. Content downloading via torrents might be illegal. Be aware of copyright infringements. Use a VPN for privacy.
