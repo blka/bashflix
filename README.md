@@ -38,6 +38,8 @@ Try install bashflix again, usually it works :)
 # How it works?
 It combines [**pirate-get**](https://github.com/vikstrous/pirate-get), [**rarbgapi**](https://pypi.org/project/RarbgAPI/) and [**we-get**](https://github.com/rachmadaniHaryono/we-get) for torrent search, [**webtorrent**](https://github.com/webtorrent/webtorrent) for torrent streaming, and [**subliminal**](https://github.com/Diaoul/subliminal) for subtitles
 
+# Disclaimer
+bashflix is under development. Best efford approch is used. Most of the times bashflix will work. Random errors will occur. Unavailability issues will occur. Some torrents and subtitles will not be found. Torrent downloading may be illegal. Proceed at your own risk. Use a VPN for privacy.
 
 # License
 This project is licensed under the terms of the [MIT license](https://github.com/astavares/bashflix/blob/master/LICENSE.md).
