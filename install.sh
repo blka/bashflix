@@ -35,6 +35,7 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
   curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
   run-with-sudo apt-get install -y nodejs
 elif [[ "$OSTYPE" == "darwin"* ]]; then
+  brew upgrade node
   brew install npm
 fi
 echo "Preparing to install PIP3 ..."
@@ -42,6 +43,8 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
  run-with-sudo apt-get -y update
  run-with-sudo apt-get install -y python3 python3-pip
 elif [[ "$OSTYPE" == "darwin"* ]]; then
+ brew upgrade python3
+ brew upgrade python
  brew install python3
 fi
 echo "Preparing to install MPV ..."
@@ -52,6 +55,7 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
   run-with-sudo apt-get install -y mpv
 elif [[ "$OSTYPE" == "darwin"* ]]; then
   brew update
+  brew upgrade mpv
   brew install mpv
 fi
 run-with-sudo python3 -m pip install --upgrade pip

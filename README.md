@@ -14,7 +14,7 @@ Examples:
 bashflix "jumanji next level"
 ```
 ```
-bashflix "westworld s03e01 1080p" pt
+bashflix "westworld s03e01 720p" pt
 ```
 
 # Tips
