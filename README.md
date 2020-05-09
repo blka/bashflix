@@ -18,10 +18,10 @@ bashflix "westworld s03e01 720p" pt
 ```
 
 Tips:
-1. Stuck? ```ctrl+c``` and try again, usually it works :)
-3. Subtitles not synced? Use ```h``` to speed it up or ```g``` to delay it.
-4. Stopping? ```space``` to PAUSE, wait a few minutes and ```space``` to PLAY.
-5. What did I watch? ```bashflix -h```
+* Stuck? ```ctrl+c``` and try again, usually it works :)
+* Subtitles not synced? Use ```h``` to speed it up or ```g``` to delay it.
+* Stopping? ```space``` to PAUSE, wait a few minutes and ```space``` to PLAY.
+* What did I watch? ```bashflix -h```
 
 ## How to install?
 1. Open terminal (```⌘+space```, then type ```terminal```, or ```ctrl+alt+t```);
