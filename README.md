@@ -18,7 +18,7 @@ bashflix "westworld s03e01 720p" pt
 ```
 
 Tips:
-* Stuck? ```ctrl+c``` and try again, usually it works :)
+* Stuck? ```ctrl+c``` and change the search query;
 * Subtitles not synced? Use ```h``` to speed it up or ```g``` to delay it.
 * Stopping? ```space``` to PAUSE, wait a few minutes and ```space``` to PLAY.
 * What did I watch? ```bashflix -h```
@@ -33,7 +33,9 @@ cd ~ && rm -rf bashflix && git clone https://github.com/astavares/bashflix.git &
 4. Wait a few minutes until it finishes.
 
 ## Not working?
-Try install bashflix again, usually it works :)
+* Change DNS to 1.1.1.1 (Cloudflare) or 8.8.8.8 (Google);
+* Install bashflix again.
+
 
 ## How it works?
 It uses [**pirate-get**](https://github.com/vikstrous/pirate-get), [**rarbgapi**](https://github.com/verybada/rarbgapi) and [**we-get**](https://github.com/rachmadaniHaryono/we-get) for torrent search, [**peerflix**](https://github.com/mafintosh/peerflix) and [**vlc**](https://github.com/videolan/vlc) for torrent streaming and playing,  and [**subliminal**](https://github.com/Diaoul/subliminal) for subtitles.
