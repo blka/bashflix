@@ -1,12 +1,9 @@
 #!/usr/bin/env bash
-password="${1}"
-if [ -z "${password}" ]; then
-  echo "The password will be used to install third-party software (run apt and pip3 with sudo)"
-  echo ""
-  echo -n "Insert your password: "
-  read -s password
-  echo ""
-fi
+echo "The password will be used to install third-party software (run apt and pip3 with sudo)"
+echo ""
+echo -n "Insert your password: "
+read -s password
+echo ""
 
 cd ~ 
 rm -rf bashflix
