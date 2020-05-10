@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
-if [ "$1" == "-h" ]; then
+query="$1"
+if [ "$query" == "-h" ]; then
   echo "$(cat $HOME/.bashflix_history)"
   exit 0
 else
-  echo -e "$request_query_raw" >> $HOME/.bashflix_history
+  echo -e "$query" >> $HOME/.bashflix_history
 fi
 
 echo "Searching the best torrent..."
-query="$1"
 query="${query#\ }"
 query="${query%\ }"
 query="${query// /.}"
