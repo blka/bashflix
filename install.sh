@@ -43,27 +43,27 @@ else
 fi
 if [[ "$OSTYPE" == "darwin"* ]]; then
   brew update
-  brew upgrade mpv
-  brew install mpv
+  #brew upgrade mpv
+  #brew install mpv
   brew cask install vlc
 else
-  run-with-sudo add-apt-repository -y ppa:mc3man/mpv-tests
+  #run-with-sudo add-apt-repository -y ppa:mc3man/mpv-tests
   run-with-sudo apt-get -y update
   run-with-sudo apt-get install -y libxslt1-dev libxml2-dev
-  run-with-sudo apt-get install -y mpv
+  #run-with-sudo apt-get install -y mpv
 fi
 run-with-sudo python3 -m pip install --upgrade pip
 run-with-sudo python3 -m pip install --upgrade pirate-get
 run-with-sudo python3 -m pip install --upgrade subliminal
 # TODO: Install rarbgapi through pip when there's a stable package there
-run-with-sudo git clone https://github.com/verybada/rarbgapi.git
-cd rarbgapi
-run-with-sudo python3 setup.py install
-cd ..
-run-with-sudo rm -r rarbgapi
+#run-with-sudo git clone https://github.com/verybada/rarbgapi.git
+#cd rarbgapi
+#run-with-sudo python3 setup.py install
+#cd ..
+#run-with-sudo rm -r rarbgapi
 run-with-sudo npm install npm@latest -g
 run-with-sudo npm install -g peerflix
-run-with-sudo npm install webtorrent-cli -g
+#run-with-sudo npm install webtorrent-cli -g
 run-with-sudo pip install git+https://github.com/rachmadaniHaryono/we-get
 chmod +x ${script_directory}/bashflix.sh
 run-with-sudo ln -fs ${script_directory}/bashflix.sh /usr/local/bin/bashflix

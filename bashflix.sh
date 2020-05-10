@@ -24,10 +24,10 @@ if [[ ${magnet} != *"magnet"* ]]; then
   magnet=$(we-get --search "${query}" --target 1337x -L | head -n 1)
   echo "Torrent found on 1337x: ${magnet}"
 fi
-if [[ ${magnet} != *"magnet"* ]]; then
-  magnet=$(rarbgapi --search-string "${query}" | tail -n 1 | sed -n 's/^.*magnet:?/magnet:?/p')
-  echo "Torrent found on RARBG: ${magnet}"
-fi
+#if [[ ${magnet} != *"magnet"* ]]; then
+#  magnet=$(rarbgapi --search-string "${query}" | tail -n 1 | sed -n 's/^.*magnet:?/magnet:?/p')
+#  echo "Torrent found on RARBG: ${magnet}"
+#fi
 #if [[ ${magnet} != *"magnet"* ]]; then
 #  magnet=$(we-get --search "${query}" --target eztv -L | head -n 1)
 #  echo "Torrent found on EZTV: ${magnet}"
