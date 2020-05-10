@@ -1,15 +1,16 @@
 #!/usr/bin/env bash
-script_directory="$( cd "$( dirname "$0" )" && pwd )"
 password="${1}"
 if [ -z "${password}" ]; then
-  echo "Password is mandatory!"
-  echo ""
   echo "notes: the password will be used to install third-party software (run apt and pip3 with sudo)"
   echo ""
   echo -n "Insert your password: "
   read -s password
   echo ""
 fi
+
+cd ~ 
+rm -rf bashflix
+
 run-with-sudo() {
   echo "${password}" | sudo -S ${@}
 }
@@ -24,6 +25,11 @@ else
   run-with-sudo apt-get update -y
   run-with-sudo apt-get install -y git curl software-properties-common build-essential libssl-dev
 fi
+
+git clone https://github.com/astavares/bashflix.git
+cd bashflix
+script_directory="$( cd "$( dirname "$0" )" && pwd )"
+
 if [[ "$OSTYPE" == "darwin"* ]]; then
   brew upgrade node
   brew install npm

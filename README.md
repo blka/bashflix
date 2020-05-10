@@ -27,7 +27,7 @@ Tips:
 1. Open terminal (```⌘+space```, then type ```terminal```, or ```ctrl+alt+t```);
 2. Copy & Paste the following command into the terminal and press ENTER:
 ```
-cd ~ && rm -rf bashflix && git clone https://github.com/astavares/bashflix.git && cd bashflix && ./install.sh
+bash <(curl https://raw.githubusercontent.com/astavares/bashflix/master/install.sh)
 ```
 3. Input your system password and press ENTER (sudo required);
 4. Wait a few minutes until it finishes.
