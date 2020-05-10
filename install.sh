@@ -13,10 +13,6 @@ fi
 run-with-sudo() {
   echo "${password}" | sudo -S ${@}
 }
-if [[ "$OSTYPE" != "linux-gnu" ]] && [[ "$OSTYPE" != "darwin"* ]]; then
-  echo "Only Mac OS and Ubuntu are supported at the moment."
-  exit 1
-fi
 if [[ "$OSTYPE" == "darwin"* ]]; then
   echo "Looking for Homebrew ..."
   if ! which brew &>/dev/null; then
