@@ -1,12 +1,15 @@
 #!/usr/bin/env bash
-echo "The password will be used to install third-party software (run apt and pip3 with sudo)"
+cd ~
+rm -rf bashflix
+git clone https://github.com/astavares/bashflix.git
+cd bashflix
+script_directory="$(pwd)"
+
+echo "notes: the password will be used to install third-party software (run apt and pip3 with sudo)"
 echo ""
 echo -n "Insert your password: "
 read -s password
 echo ""
-
-cd ~ 
-rm -rf bashflix
 
 run-with-sudo() {
   echo "${password}" | sudo -S ${@}
@@ -22,15 +25,6 @@ else
   run-with-sudo apt-get update -y
   run-with-sudo apt-get install -y git curl software-properties-common build-essential libssl-dev
 fi
-
-cd ~
-git clone https://github.com/astavares/bashflix.git
-cd bashflix
-script_directory="$(pwd)"
-chmod +x ${script_directory}/bashflix.sh
-run-with-sudo ln -fs ${script_directory}/bashflix.sh /usr/local/bin/bashflix
-run-with-sudo echo >$HOME/.bashflix_history
-
 if [[ "$OSTYPE" == "darwin"* ]]; then
   brew upgrade node
   brew install npm
@@ -72,4 +66,6 @@ run-with-sudo npm install npm@latest -g
 run-with-sudo npm install -g peerflix
 #run-with-sudo npm install webtorrent-cli -g
 run-with-sudo pip install git+https://github.com/rachmadaniHaryono/we-get
-
+chmod +x ${script_directory}/bashflix.sh
+run-with-sudo ln -fs ${script_directory}/bashflix.sh /usr/local/bin/bashflix
+run-with-sudo echo >$HOME/.bashflix_history
