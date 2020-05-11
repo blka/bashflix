@@ -4,6 +4,7 @@ rm -rf bashflix
 git clone https://github.com/astavares/bashflix.git
 cd bashflix
 script_directory="$(pwd)"
+echo $script_directory
 
 echo "notes: the password will be used to install third-party software (run apt and pip3 with sudo)"
 echo ""
