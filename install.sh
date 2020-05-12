@@ -147,8 +147,8 @@ sudo pip install git+https://github.com/rachmadaniHaryono/we-get
 #brew install webtorrent-cli
 
 cd ~
-#rm -rf bashflix
-#git clone https://github.com/astavares/bashflix.git
+rm -rf bashflix
+git clone https://github.com/astavares/bashflix.git
 cd bashflix
 script_directory="$(pwd)"
 chmod +x ${script_directory}/bashflix.sh
