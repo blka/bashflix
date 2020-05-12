@@ -54,8 +54,9 @@ if [ -n "${language}" ]; then
     subtitle=$(find /tmp/bashflix/${query} -maxdepth 1 -name "*${language}*.srt" | head -1)
     if [ -n "$subtitle" ]; then
       echo "Found subtitle for language ${language}"
-      #mv "/tmp/bashflix/${query}/*.srt" "/tmp/bashflix/${query}/${query}.${language}.srt"
-      subtitle=$(find /tmp/bashflix/${query} -maxdepth 1 -name "*${language}*.srt" | head -1)
+      #find /tmp/bashflix/${query} -maxdepth 1 -name "${language}.srt" | head -1 | xargs -I '{}' mv {} "/tmp/bashflix/${query}/${query}.${language}.srt"
+      subtitle=$(find /tmp/bashflix/${query} -maxdepth 1 -name "${language}.srt" | head -1)
+      #echo $subtitle
       break;
     fi
   done
@@ -74,4 +75,4 @@ fi
 #  webtorrent download ${magnet} --mpv
 #fi
 
-rm -rf /tmp/bashflix/${query}/*
+rm -rf /tmp/bashflix/*

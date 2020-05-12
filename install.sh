@@ -1,72 +1,156 @@
 #!/usr/bin/env bash
-echo "The password will be used to install third-party software (run apt and pip3 with sudo)"
-echo ""
-echo -n "Insert your password: "
-read -s password
-echo ""
+case $EUID in
+   0) : ;; # we are running script as root so we are okay
+   *)  /usr/bin/sudo $0 "${@}" ;; # not root, become root for the rest of this session (and ask for the sudo password only once)
+esac
 
-run-with-sudo() {
-  echo "${password}" | sudo -S ${@}
+formula_install() {
+    PACINSTALL=false
+    for i in "${@}"; do
+        if ! command -v "${i}" > /dev/null 2>&1
+        then
+            echo -e "Installing ${i}"
+            $PACMAN "${i}" && PACINSTALL=true
+        fi
+    done
+    if [ "${PACINSTALL}" == true ]
+    then
+        return 0
+    else
+        return 1
+    fi
 }
-if [[ "$OSTYPE" == "darwin"* ]]; then
+
+library_install() {
+    PACINSTALL=false
+    for i in "${@}"; do
+        if ! $PACSEARCH | grep "^${i}$" > /dev/null 2>&1
+        then
+            echo "Installing ${i}"
+            $PACMAN "${i}" && PACINSTALL=true
+        fi
+    done
+    if [[ "${PACINSTALL}" == true ]]
+    then
+        return 0
+    else
+        return 1
+    fi
+}
+
+if [[ $(uname -s) == "Darwin" ]]
+then
+    KERNEL="Darwin"
+    OS="macos"
+elif [[ $(uname -s) == "Linux" ]]
+then
+    KERNEL="Linux"
+    if [[ -f /etc/arch-release ]]
+    then
+        OS="arch"
+    elif [[ -f /etc/debian_version ]]
+    then
+        OS="debian"
+    elif [[ -f /etc/redhat-release ]]
+    then
+        OS="fedora"
+    fi
+else
+    exit 1
+fi
+
+if command -v brew > /dev/null 2>&1 # check if brew is installed
+then
+    PACMAN='brew install'
+    PACSEARCH='brew list'
+else # if not brew, check for OS
+    declare -A osInfo;
+    osInfo[/etc/redhat-release]='sudo dnf --assumeyes install'
+    osInfo[/etc/arch-release]='sudo pacman -S --noconfirm'
+    osInfo[/etc/gentoo-release]='sudo emerge'
+    osInfo[/etc/SuSE-release]='sudo zypper in'
+    osInfo[/etc/debian_version]='sudo apt-get --assume-yes install'
+
+    declare -A osSearch;
+    osSearch[/etc/redhat-release]='dnf list installed'
+    osSearch[/etc/arch-release]='pacman -Qq'
+    osSearch[/etc/gentoo-release]="cd /var/db/pkg/ && ls -d */*| sed 's/\/$//'"
+    osSearch[/etc/SuSE-release]='rpm -qa'
+    osSearch[/etc/debian_version]='dpkg -l' # previously `apt list --installed`.  Can use `sudo apt-cache search`.
+
+    for f in "${!osInfo[@]}"
+    do
+        if [[ -f $f ]];then
+            PACMAN="${osInfo[$f]}"
+        fi
+    done
+
+    for s in "${!osSearch[@]}"
+    do
+        if [[ -f $s ]];then
+            PACSEARCH="${osSearch[$s]}"
+        fi
+    done
+fi
+
+#define the formula that the majority of OSs use
+#so that we only have to redefine formula minimally, as required
+PYTHON3='python3'
+PIP3='python3-pip'
+
+case $OS in
+    macos)
+        PYTHON3='python' # Includes pip3 on macOS
+        NPM='npm'
+        ;;
+    arch)
+        PYTHON3='python'
+        PIP3='python-pip' 
+        ;;
+    debian) ;;
+    fedora) ;;
+esac
+
+if [[ "$OS" == "macos" ]]; then
   echo "Looking for Homebrew ..."
   if ! which brew &>/dev/null; then
     echo "Preparing to install Homebrew ..."
-    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-    brew install git
+    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+    brew update
   fi
 else
-  run-with-sudo apt-get update -y
-  run-with-sudo apt-get install -y git curl software-properties-common build-essential libssl-dev
+  sudo apt update -y
+  sudo apt install -y git curl software-properties-common build-essential libssl-dev
 fi
 
+formula_install "${PYTHON3}" "${NPM}"
+library_install "${PIP3}"
+
+if [[ "$OS" == "macos" ]]; then
+  brew upgrade node
+  brew upgrade python3
+  brew cask install vlc
+else
+  curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+  sudo apt install -y nodejs
+  sudo apt install -y vlc
+  sudo apt install -y libxslt1-dev libxml2-dev
+fi
+
+pip3 install --upgrade pip
+pip3 install --upgrade pirate-get
+pip3 install --upgrade subliminal
+sudo npm install -g npm@latest 
+sudo npm install -g peerflix
+sudo pip install git+https://github.com/rachmadaniHaryono/we-get
+#sudo npm install webtorrent-cli -g
+#brew install webtorrent-cli
+
 cd ~
-rm -rf bashflix
-git clone https://github.com/astavares/bashflix.git
+#rm -rf bashflix
+#git clone https://github.com/astavares/bashflix.git
 cd bashflix
 script_directory="$(pwd)"
 chmod +x ${script_directory}/bashflix.sh
-run-with-sudo ln -fs ${script_directory}/bashflix.sh /usr/local/bin/bashflix
-run-with-sudo echo >$HOME/.bashflix_history
-
-if [[ "$OSTYPE" == "darwin"* ]]; then
-  brew upgrade node
-  brew install npm
-else
-  run-with-sudo apt-get install -y software-properties-common
-  curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
-  run-with-sudo apt-get install -y nodejs
-  run-with-sudo apt-get install -y vlc
-fi
-if [[ "$OSTYPE" == "darwin"* ]]; then
- brew upgrade python3
- brew upgrade python
- brew install python3
-else
- run-with-sudo apt-get -y update
- run-with-sudo apt-get install -y python3 python3-pip
-fi
-if [[ "$OSTYPE" == "darwin"* ]]; then
-  brew update
-  #brew upgrade mpv
-  #brew install mpv
-  brew cask install vlc
-else
-  #run-with-sudo add-apt-repository -y ppa:mc3man/mpv-tests
-  run-with-sudo apt-get -y update
-  run-with-sudo apt-get install -y libxslt1-dev libxml2-dev
-  #run-with-sudo apt-get install -y mpv
-fi
-run-with-sudo python3 -m pip install --upgrade pip
-run-with-sudo python3 -m pip install --upgrade pirate-get
-run-with-sudo python3 -m pip install --upgrade subliminal
-# TODO: Install rarbgapi through pip when there's a stable package there
-#run-with-sudo git clone https://github.com/verybada/rarbgapi.git
-#cd rarbgapi
-#run-with-sudo python3 setup.py install
-#cd ..
-#run-with-sudo rm -r rarbgapi
-run-with-sudo npm install npm@latest -g
-run-with-sudo npm install -g peerflix
-#run-with-sudo npm install webtorrent-cli -g
-run-with-sudo pip install git+https://github.com/rachmadaniHaryono/we-get
+sudo ln -fs ${script_directory}/bashflix.sh /usr/local/bin/bashflix
+sudo echo >$HOME/.bashflix_history
