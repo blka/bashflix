@@ -59,11 +59,17 @@ else
     exit 1
 fi
 
-if command -v brew > /dev/null 2>&1 # check if brew is installed
-then
+if [[ "$OS" == "macos" ]]; then
+    echo "Looking for Homebrew ..."
+    #if command -v brew > /dev/null 2>&1 # check if brew is installed
+    if ! which brew &>/dev/null; then
+        echo "Preparing to install Homebrew ..."
+        /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+        brew update
+    fi
     PACMAN='brew install'
     PACSEARCH='brew list'
-else # if not brew, check for OS
+else
     declare -A osInfo;
     osInfo[/etc/redhat-release]='sudo dnf --assumeyes install'
     osInfo[/etc/arch-release]='sudo pacman -S --noconfirm'
@@ -91,6 +97,9 @@ else # if not brew, check for OS
             PACSEARCH="${osSearch[$s]}"
         fi
     done
+
+    sudo apt update -y
+    sudo apt install -y git curl software-properties-common build-essential libssl-dev
 fi
 
 #define the formula that the majority of OSs use
@@ -110,18 +119,6 @@ case $OS in
     debian) ;;
     fedora) ;;
 esac
-
-if [[ "$OS" == "macos" ]]; then
-  echo "Looking for Homebrew ..."
-  if ! which brew &>/dev/null; then
-    echo "Preparing to install Homebrew ..."
-    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-    brew update
-  fi
-else
-  sudo apt update -y
-  sudo apt install -y git curl software-properties-common build-essential libssl-dev
-fi
 
 formula_install "${PYTHON3}" "${NPM}"
 library_install "${PIP3}"
