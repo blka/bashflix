@@ -106,21 +106,23 @@ fi
 #so that we only have to redefine formula minimally, as required
 PYTHON3='python3'
 PIP3='python3-pip'
+NPM='npm'
+NODE='nodejs'
 
 case $OS in
     macos)
         PYTHON3='python' # Includes pip3 on macOS
-        NPM='npm'
+        NODE='node'
         ;;
     arch)
         PYTHON3='python'
-        PIP3='python-pip' 
+        PIP3='python-pip'
         ;;
     debian) ;;
     fedora) ;;
 esac
 
-formula_install "${PYTHON3}" "${NPM}"
+formula_install "${PYTHON3}" "${NODE}"
 library_install "${PIP3}"
 
 if [[ "$OS" == "macos" ]]; then
@@ -128,8 +130,6 @@ if [[ "$OS" == "macos" ]]; then
   brew upgrade python3
   brew cask install vlc
 else
-  curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
-  sudo apt install -y nodejs
   sudo apt install -y vlc
   sudo apt install -y libxslt1-dev libxml2-dev
 fi
