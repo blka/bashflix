@@ -34,7 +34,10 @@ bash <(curl https://raw.githubusercontent.com/astavares/bashflix/master/install.
 
 ## Not working?
 * [Change DNS to 1.1.1.1](https://1.1.1.1/dns/) (Cloudflare);
-* Install bashflix again.
+* Install bashflix again using this:
+```
+bash <(curl https://raw.githubusercontent.com/astavares/bashflix/dev/install.sh)
+```
 
 
 ## How it works?
