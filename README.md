@@ -33,7 +33,7 @@ bash <(curl https://raw.githubusercontent.com/astavares/bashflix/master/install.
 4. Wait a few minutes until it finishes.
 
 ## Not working?
-* Change DNS to 1.1.1.1 (Cloudflare) or 8.8.8.8 (Google);
+* [Change DNS to 1.1.1.1](https://1.1.1.1/dns/) (Cloudflare);
 * Install bashflix again.
 
 
