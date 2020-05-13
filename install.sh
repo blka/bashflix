@@ -122,7 +122,7 @@ case $OS in
     fedora) ;;
 esac
 
-formula_install "${PYTHON3}" "${NODE}"
+formula_install "${PYTHON3}" "${NODE}" "${NPM}" "${PIP3}"
 library_install "${PIP3}"
 
 if [[ "$OS" == "macos" ]]; then
