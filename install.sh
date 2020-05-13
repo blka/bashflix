@@ -130,8 +130,7 @@ if [[ "$OS" == "macos" ]]; then
   brew upgrade python3
   brew cask install vlc
 else
-  sudo apt install -y vlc
-  sudo apt install -y libxslt1-dev libxml2-dev
+  sudo apt install -y npm vlc libxslt1-dev libxml2-dev 
 fi
 
 pip3 install --upgrade pip
