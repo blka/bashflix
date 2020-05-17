@@ -6,7 +6,7 @@ Bash script to watch movies and TV shows on Mac OS X and Linux, with subtitles, 
 ## How to use?
 Once installed:
 1. Open terminal (```⌘+space```, then type ```terminal```, or ```ctrl+alt+t```)
-2. Type ```bashflix "movie / tv series sXXeYY" language``` in the terminal and press ENTER:
+2. Type ```bashflix "movie / serie sXXeYY" language``` in the terminal and press ENTER:
 3. Wait a few seconds for the player to open.
 
 Examples:
