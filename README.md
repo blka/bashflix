@@ -27,7 +27,7 @@ Tips:
 1. Open terminal (```⌘+space```, then type ```terminal```, or ```ctrl+alt+t```);
 2. Copy & Paste the following command into the terminal and press ENTER:
 ```
-bash <(curl https://raw.githubusercontent.com/astavares/bashflix/master/install.sh)
+bash <(curl https://raw.githubusercontent.com/0zz4r/bashflix/master/install.sh)
 ```
 3. Input your system password and press ENTER (sudo required);
 4. Wait a few minutes until it finishes.
@@ -36,7 +36,7 @@ bash <(curl https://raw.githubusercontent.com/astavares/bashflix/master/install.
 * [Change DNS to 1.1.1.1](https://1.1.1.1/dns/) (Cloudflare);
 * Install bashflix again using the **NEW** installer:
 ```
-bash <(curl https://raw.githubusercontent.com/astavares/bashflix/dev/install.sh)
+bash <(curl https://raw.githubusercontent.com/0zz4r/bashflix/dev/install.sh)
 ```
 
 
@@ -47,4 +47,4 @@ It uses [**pirate-get**](https://github.com/vikstrous/pirate-get) and [**we-get*
 bashflix is under development. Best efford approch is used. Most of the times bashflix will work. Random errors will occur. Unavailability issues will occur. Some torrents and subtitles will not be found. Content downloading via torrents might be illegal. Be aware of copyright infringements. Use a VPN for privacy.
 
 ## License
-This project is licensed under the terms of the [MIT license](https://github.com/astavares/bashflix/blob/master/LICENSE.md).
+This project is licensed under the terms of the [MIT license](https://github.com/0zz4r/bashflix/blob/master/LICENSE.md).
