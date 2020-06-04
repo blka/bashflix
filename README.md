@@ -44,7 +44,7 @@ bash <(curl https://raw.githubusercontent.com/0zz4r/bashflix/dev/install.sh)
 It uses [**pirate-get**](https://github.com/vikstrous/pirate-get) and [**we-get**](https://github.com/rachmadaniHaryono/we-get) for torrent search, [**peerflix**](https://github.com/mafintosh/peerflix) and [**vlc**](https://github.com/videolan/vlc) for torrent streaming and playing,  and [**subliminal**](https://github.com/Diaoul/subliminal) for subtitles.
 
 ## Disclaimer
-bashflix is under development. Best efford approch is used. Most of the times bashflix will work. Random errors will occur. Unavailability issues will occur. Some torrents and subtitles will not be found. Content downloading via torrents might be illegal. Be aware of copyright infringements. Use a VPN for privacy.
+bashflix is under development. Best efford approch is used. Most of the times bashflix will work. Random errors will occur. Unavailability issues will occur. Some torrents and subtitles will not be found. Downloading files via torrents might be illegal, depending on the content, so be aware of copyright infringements. Use a VPN for privacy.
 
 ## License
 This project is licensed under the terms of the [MIT license](https://github.com/0zz4r/bashflix/blob/master/LICENSE.md).
