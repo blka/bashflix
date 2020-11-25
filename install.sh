@@ -1,7 +1,25 @@
 #!/usr/bin/env bash
+
+echo -n "
+██████╗  █████╗ ███████╗██╗  ██╗███████╗██╗     ██╗██╗  ██╗
+██╔══██╗██╔══██╗██╔════╝██║  ██║██╔════╝██║     ██║╚██╗██╔╝
+██████╔╝███████║███████╗███████║█████╗  ██║     ██║ ╚███╔╝ 
+██╔══██╗██╔══██║╚════██║██╔══██║██╔══╝  ██║     ██║ ██╔██╗ 
+██████╔╝██║  ██║███████║██║  ██║██║     ███████╗██║██╔╝ ██╗
+╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═╝     ╚══════╝╚═╝╚═╝  ╚═╝                                    
+"
+echo ""
+echo "Welcome to bashflix installation script!"
+echo ""
+echo "The following software will be installed:"
+echo "* pirate-get & we-get - torrent search"
+echo "* peerflix & vlc - torrent streaming and playing"
+echo "* subliminal - subtitles"
+echo ""
+
 case $EUID in
    0) : ;; # we are running script as root so we are okay
-   *)  /usr/bin/sudo $0 "${@}" ;; # not root, become root for the rest of this session (and ask for the sudo password only once)
+   *) echo "Please enter you system password (used on brew, apt, npm, pip, etc)." && /usr/bin/sudo $0 "${@}" ;; # not root, become root for the rest of this session (and ask for the sudo password only once)
 esac
 
 formula_install() {
@@ -143,7 +161,7 @@ sudo pip install git+https://github.com/rachmadaniHaryono/we-get
 #brew install webtorrent-cli
 
 cd ~
-rm -rf bashflix
+sudo rm -rf bashflix
 git clone https://github.com/astavares/bashflix.git
 cd bashflix
 script_directory="$(pwd)"
