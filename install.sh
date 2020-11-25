@@ -19,7 +19,7 @@ echo ""
 
 case $EUID in
    0) : ;; # we are running script as root so we are okay
-   *) echo "Please enter you system password (used on brew, apt, npm, pip, etc)." && /usr/bin/sudo $0 "${@}" ;; # not root, become root for the rest of this session (and ask for the sudo password only once)
+   *) echo "Please enter your system password (used on brew, apt, npm, pip, etc)." && /usr/bin/sudo $0 "${@}" ;; # not root, become root for the rest of this session (and ask for the sudo password only once)
 esac
 
 formula_install() {
