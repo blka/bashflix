@@ -1,10 +1,21 @@
 #!/usr/bin/env bash
+
+echo -n "
+██████╗  █████╗ ███████╗██╗  ██╗███████╗██╗     ██╗██╗  ██╗
+██╔══██╗██╔══██╗██╔════╝██║  ██║██╔════╝██║     ██║╚██╗██╔╝
+██████╔╝███████║███████╗███████║█████╗  ██║     ██║ ╚███╔╝ 
+██╔══██╗██╔══██║╚════██║██╔══██║██╔══╝  ██║     ██║ ██╔██╗ 
+██████╔╝██║  ██║███████║██║  ██║██║     ███████╗██║██╔╝ ██╗
+╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═╝     ╚══════╝╚═╝╚═╝  ╚═╝                                    
+"
+
 query="$1"
 if [ "$query" == "-h" ]; then
+  echo "Previously watched:"
   echo "$(cat $HOME/.bashflix_history)"
   exit 0
 else
-  echo -e "$query" >> $HOME/.bashflix_history
+  echo "$query" | cat - $HOME/.bashflix_history > temp && mv temp $HOME/.bashflix_history
 fi
 
 echo "Searching the best torrent..."
@@ -24,14 +35,14 @@ if [[ ${magnet} != *"magnet"* ]]; then
   magnet=$(we-get --search "${query}" --target 1337x -L | head -n 1)
   echo "Torrent found on 1337x: ${magnet}"
 fi
-#if [[ ${magnet} != *"magnet"* ]]; then
-#  magnet=$(rarbgapi --search-string "${query}" | tail -n 1 | sed -n 's/^.*magnet:?/magnet:?/p')
-#  echo "Torrent found on RARBG: ${magnet}"
-#fi
-#if [[ ${magnet} != *"magnet"* ]]; then
-#  magnet=$(we-get --search "${query}" --target eztv -L | head -n 1)
-#  echo "Torrent found on EZTV: ${magnet}"
-#fi
+if [[ ${magnet} != *"magnet"* ]]; then
+ magnet=$(rarbgapi --search-string "${query}" | tail -n 1 | sed -n 's/^.*magnet:?/magnet:?/p')
+ echo "Torrent found on RARBG: ${magnet}"
+fi
+if [[ ${magnet} != *"magnet"* ]]; then
+ magnet=$(we-get --search "${query}" --target eztv -L | head -n 1)
+ echo "Torrent found on EZTV: ${magnet}"
+fi
 if [[ ${magnet} != *"magnet"* ]]; then
   echo "Could not find torrent for the query ${query}. Change the query."
   exit 1
