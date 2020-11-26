@@ -22,31 +22,37 @@ echo "Searching the best torrent..."
 query="${query#\ }"
 query="${query%\ }"
 query="${query// /.}"
-magnet=""
-if [[ ${magnet} != *"magnet"* ]]; then
-  magnet=$(pirate-get -s SeedersDsc -0 -C 'echo "%s"' "${query}" | tail -n 1)
+magnet=$(pirate-get -s SeedersDsc -0 -C 'echo "%s"' "${query}" | tail -n 1)
+if [ -z $magnet ]; then
+  echo "Could not find torrent for query ${query}." 
+  echo "Please change the query."
+  exit 1
+else
   echo "Torrent found on The Pirate Bay: ${magnet}"
 fi
-if [[ ${magnet} != *"magnet"* ]]; then
-  magnet=$(we-get --search "${query}" --target yts -L | head -n 1)
-  echo "Torrent found on YTS: ${magnet}"
-fi
-if [[ ${magnet} != *"magnet"* ]]; then
-  magnet=$(we-get --search "${query}" --target 1337x -L | head -n 1)
-  echo "Torrent found on 1337x: ${magnet}"
-fi
-if [[ ${magnet} != *"magnet"* ]]; then
- magnet=$(rarbgapi --search-string "${query}" | tail -n 1 | sed -n 's/^.*magnet:?/magnet:?/p')
- echo "Torrent found on RARBG: ${magnet}"
-fi
-if [[ ${magnet} != *"magnet"* ]]; then
- magnet=$(we-get --search "${query}" --target eztv -L | head -n 1)
- echo "Torrent found on EZTV: ${magnet}"
-fi
-if [[ ${magnet} != *"magnet"* ]]; then
-  echo "Could not find torrent for the query ${query}. Change the query."
-  exit 1
-fi
+# echo "${magnet}"
+# if [[ ${magnet} == *"No results"* ]]; then
+  
+# if [[ ${magnet} != *"magnet"* ]]; then
+#   magnet=$(we-get --search "${query}" --target yts -L | head -n 1)
+#   echo "Torrent found on YTS: ${magnet}"
+# fi 
+# if [[ ${magnet} != *"magnet"* ]]; then
+#   magnet=$(we-get --search "${query}" --target 1337x -L | head -n 1)
+#   echo "Torrent found on 1337x: ${magnet}"
+# fi
+# if [[ ${magnet} != *"magnet"* ]]; then
+#  magnet=$(rarbgapi --search-string "${query}" | tail -n 1 | sed -n 's/^.*magnet:?/magnet:?/p')
+#  echo "Torrent found on RARBG: ${magnet}"
+# fi
+# if [[ ${magnet} != *"magnet"* ]]; then
+#  magnet=$(we-get --search "${query}" --target eztv -L | head -n 1)
+#  echo "Torrent found on EZTV: ${magnet}"
+# fi
+# if [[ ${magnet} != *"magnet"* ]]; then
+#   echo "Could not find torrent for the query ${query}. Change the query."
+#   exit 1
+# fi
 
 language=${2}
 subtitle=""

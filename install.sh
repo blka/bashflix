@@ -156,7 +156,7 @@ pip3 install --upgrade pirate-get
 pip3 install --upgrade subliminal
 sudo npm install -g npm@latest 
 sudo npm install -g peerflix
-sudo pip install git+https://github.com/rachmadaniHaryono/we-get
+#sudo pip install git+https://github.com/rachmadaniHaryono/we-get
 #sudo npm install webtorrent-cli -g
 #brew install webtorrent-cli
 
