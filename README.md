@@ -38,7 +38,7 @@ bash <(curl https://raw.githubusercontent.com/0zz4r/bashflix/master/install.sh)
 
 
 ## How it works?
-It uses [**pirate-get**](https://github.com/vikstrous/pirate-get) and [**we-get**](https://github.com/rachmadaniHaryono/we-get) for torrent search, [**peerflix**](https://github.com/mafintosh/peerflix) and [**vlc**](https://github.com/videolan/vlc) for torrent streaming and playing,  and [**subliminal**](https://github.com/Diaoul/subliminal) for subtitles.
+It uses [**pirate-get**](https://github.com/vikstrous/pirate-get) for torrent search, [**peerflix**](https://github.com/mafintosh/peerflix) and [**vlc**](https://github.com/videolan/vlc) for torrent streaming and playing,  and [**subliminal**](https://github.com/Diaoul/subliminal) for subtitles.
 
 ## Disclaimer
 bashflix is under development. If you want the newer features or bugs fixed, just reinstall it from time to time. Best efford approch is used. Most of the times bashflix will work. Random errors will occur. Unavailability issues will occur. Some torrents and subtitles will not be found. 
