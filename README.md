@@ -24,18 +24,14 @@ Tips:
 * What did I watch? `bashflix -h` to see which episode to watch next.
 
 ## How to install?
-1. Open terminal (`⌘+space`, then type `terminal`, or `ctrl+alt+t`)
+1. Open terminal (`⌘+space`, then type `terminal`, or `ctrl+alt+t`);
 2. Copy & Paste the following command into the terminal and press ENTER:
 ```
 bash <(curl https://raw.githubusercontent.com/0zz4r/bashflix/master/install.sh)
 ```
 3. Input your system password and press ENTER (sudo required);
-4. Wait a few minutes until it finishes.
-
-## Not working?
-* [Change DNS to 1.1.1.1](https://1.1.1.1/dns/) (Cloudflare);
-* Reinstall bashflix.
-
+4. Wait a few minutes until it finishes;
+5. (Optional) [Change DNS to 1.1.1.1](https://1.1.1.1/dns/) (this might prevent torrent search failures).
 
 ## How it works?
 It uses [**pirate-get**](https://github.com/vikstrous/pirate-get) for torrent search, [**peerflix**](https://github.com/mafintosh/peerflix) and [**vlc**](https://github.com/videolan/vlc) for torrent streaming and playing,  and [**subliminal**](https://github.com/Diaoul/subliminal) for subtitles.
