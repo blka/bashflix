@@ -6,7 +6,7 @@ Bash script to watch movies and TV shows on Mac OS X and Linux, with subtitles, 
 ## How to use?
 Once installed:
 1. Open terminal (`⌘+space`, then type `terminal`, or `ctrl+alt+t`);
-2. Type `bashflix "movie / serie sXXeYY" subtitles` in the terminal and press ENTER;
+2. Type `bashflix "movie / serie sXXeYY" subtitles_language` and press ENTER;
 3. Wait a few seconds for the player to open.
 
 Examples:
@@ -29,11 +29,11 @@ Tips:
 1. Open terminal (`⌘+space`, then type `terminal`, or `ctrl+alt+t`);
 2. Copy & Paste the following command into the terminal and press ENTER:
 ```
-bash <(curl https://raw.githubusercontent.com/0zz4r/bashflix/master/install.sh)
+bash <(curl -fsSL https://raw.githubusercontent.com/0zz4r/bashflix/master/install.sh)
 ```
-3. Input your system password and press ENTER (sudo required);
+3. Input your system password and press ENTER;
 4. Wait a few minutes until it finishes;
-5. (Optional) [Change DNS to 1.1.1.1](https://1.1.1.1/dns/) (this might prevent torrent search failures).
+5. (Optional) [Change DNS to 1.1.1.1](https://1.1.1.1/dns/) to prevent torrent search failures.
 
 ## How it works?
 It uses [**pirate-get**](https://github.com/vikstrous/pirate-get) for torrent search, [**peerflix**](https://github.com/mafintosh/peerflix) and [**vlc**](https://github.com/videolan/vlc) for torrent streaming and playing,  and [**subliminal**](https://github.com/Diaoul/subliminal) for subtitles.

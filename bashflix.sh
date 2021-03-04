@@ -35,8 +35,7 @@ done
 
 query="$1"
 if [ "$query" == "-u" ]; then
-  #$(bash <(curl -s https://raw.githubusercontent.com/0zz4r/bashflix/master/install.sh))
-  $(bash ~/bashflix/install.sh)
+  $(bash <(curl -fsSL https://raw.githubusercontent.com/0zz4r/bashflix/master/install.sh))
   exit 0
 fi
 if [ "$query" == "-p" ]; then
