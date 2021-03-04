@@ -7,33 +7,22 @@ echo -n "
 ██████╔╝██║  ██║███████║██║  ██║██║     ███████╗██║██╔╝ ██╗
 ╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═╝     ╚══════╝╚═╝╚═╝  ╚═╝                                    
 "
-
-Help()
-{
-   echo "Bash script to watch movies and TV shows on Mac OS X and Linux, with subtitles, instantaneously. Just give the name, quickly grab your popcorn and have fun!"
-   echo
-   echo "Syntax: bashflix [-r|p|h] \"search query\" subtitles_language"
-   echo "options:"
-   echo "u     Update bashflix"
-   echo "p     Previously watched"
-   echo "h     Help"
-   echo
-   echo "Examples:" 
-   echo "bashflix \"some movie title 1080p\""
-   echo "bashflix \"some serie title s01e01\" pt"
-   echo "bashflix -p"
-   
-}
-
-while getopts ":h" option; do
-   case $option in
-      h)
-         Help
-         exit;;
-   esac
-done
-
 query="$1"
+if [ "$query" == "-h" ]; then
+  echo "Bash script to watch movies and TV shows on Mac OS X and Linux, with subtitles, instantaneously. Just give the name, quickly grab your popcorn and have fun!"
+  echo
+  echo "Syntax: bashflix [-r|p|h] \"search query\" subtitles_language"
+  echo "options:"
+  echo "u     Update bashflix"
+  echo "p     Previously watched"
+  echo "h     Help"
+  echo
+  echo "Examples:" 
+  echo "bashflix \"some movie title 1080p\""
+  echo "bashflix \"some serie title s01e01\" pt"
+  echo "bashflix -p"
+  exit 0
+fi
 if [ "$query" == "-u" ]; then
   $(bash <(curl -fsSL https://raw.githubusercontent.com/0zz4r/bashflix/master/install.sh))
   exit 0
