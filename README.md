@@ -11,17 +11,19 @@ Once installed:
 
 Examples:
 ```
-bashflix "jumanji next level"
+bashflix "some movie title 1080p"
 ```
 ```
-bashflix "westworld s03e01 720p" pt
+bashflix "some serie title s01e01" pt
 ```
 
 Tips:
 * Stuck? `ctrl+c` and change the search query;
 * Subtitles not synced? Use `h` to speed it up or `g` to delay it;
 * Stopping? `space` to PAUSE, wait a few minutes and `space` to PLAY;
-* What did I watch? `bashflix -h` to see which episode to watch next.
+* What did I watch? `bashflix -p` to see which episode to watch next;
+* Need help? `bashflix -h` shows how to use it;
+* From time to time, use `bashflix -u` to update bashflix.
 
 ## How to install?
 1. Open terminal (`⌘+space`, then type `terminal`, or `ctrl+alt+t`);

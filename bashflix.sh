@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 echo -n "
 ██████╗  █████╗ ███████╗██╗  ██╗███████╗██╗     ██╗██╗  ██╗
 ██╔══██╗██╔══██╗██╔════╝██║  ██║██╔════╝██║     ██║╚██╗██╔╝
@@ -9,15 +8,44 @@ echo -n "
 ╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═╝     ╚══════╝╚═╝╚═╝  ╚═╝                                    
 "
 
+Help()
+{
+   echo "Bash script to watch movies and TV shows on Mac OS X and Linux, with subtitles, instantaneously. Just give the name, quickly grab your popcorn and have fun!"
+   echo
+   echo "Syntax: bashflix [-r|p|h] \"search query\" subtitles_language"
+   echo "options:"
+   echo "u     Update bashflix"
+   echo "p     Previously watched"
+   echo "h     Help"
+   echo
+   echo "Examples:" 
+   echo "bashflix \"some movie title 1080p\""
+   echo "bashflix \"some serie title s01e01\" pt"
+   echo "bashflix -p"
+   
+}
+
+while getopts ":h" option; do
+   case $option in
+      h)
+         Help
+         exit;;
+   esac
+done
+
 query="$1"
-if [ "$query" == "-h" ]; then
+if [ "$query" == "-u" ]; then
+  #$(bash <(curl -s https://raw.githubusercontent.com/0zz4r/bashflix/master/install.sh))
+  $(bash ~/bashflix/install.sh)
+  exit 0
+fi
+if [ "$query" == "-p" ]; then
   echo "Previously watched:"
   echo "$(cat $HOME/.bashflix_history)"
   exit 0
 else
   echo "$query" | cat - $HOME/.bashflix_history > temp && mv temp $HOME/.bashflix_history
 fi
-
 echo "Searching the best torrent..."
 query="${query#\ }"
 query="${query%\ }"
@@ -32,7 +60,6 @@ else
 fi
 # echo "${magnet}"
 # if [[ ${magnet} == *"No results"* ]]; then
-  
 # if [[ ${magnet} != *"magnet"* ]]; then
 #   magnet=$(we-get --search "${query}" --target yts -L | head -n 1)
 #   echo "Torrent found on YTS: ${magnet}"
@@ -53,7 +80,6 @@ fi
 #   echo "Could not find torrent for the query ${query}. Change the query."
 #   exit 1
 # fi
-
 language=${2}
 subtitle=""
 if [ -n "${language}" ]; then
@@ -78,18 +104,15 @@ if [ -n "${language}" ]; then
     fi
   done
 fi
-
 echo "Streaming ${torrent_name} with ${subtitle}..."
 if [ -n "${subtitle}" ]; then
   peerflix ${magnet} --subtitles ${subtitle} --vlc -- --fullscreen 
 else
   peerflix ${magnet} --vlc -- --fullscreen
 fi
-
 #if [ -n "${subtitle}" ]; then
 #  webtorrent download ${magnet} --mpv -t ${subtitle}
 #else
 #  webtorrent download ${magnet} --mpv
 #fi
-
 rm -rf /tmp/bashflix/*
