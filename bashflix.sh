@@ -8,7 +8,7 @@ echo -n "
 ╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═╝     ╚══════╝╚═╝╚═╝  ╚═╝                                    
 "
 query="$1"
-if [ "$query" == "-h" ]; then
+if [ -z "$1" ] || [ "$query" == "-h" ]; then
   echo "Bash script to watch movies and TV shows on Mac OS X and Linux, with subtitles, instantaneously. Just give the name, quickly grab your popcorn and have fun!"
   echo
   echo "Syntax: bashflix [-r|p|h] \"search query\" subtitles_language"
