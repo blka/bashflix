@@ -11,11 +11,11 @@ query="$1"
 if [ -z "$1" ] || [ "$query" == "-h" ]; then
   echo "Bash script to watch movies and TV shows on Mac OS X and Linux, with subtitles, instantaneously. Just give the name, quickly grab your popcorn and have fun!"
   echo
-  echo "Syntax: bashflix [-r|p|h] \"search query\" subtitles_language"
+  echo "Syntax: bashflix [OPTION] \"search query\" subtitles_language"
   echo "options:"
-  echo "u     Update bashflix"
-  echo "p     Previously watched"
-  echo "h     Help"
+  echo "-u     Update bashflix"
+  echo "-p     Previously watched"
+  echo "-h     Help"
   echo
   echo "Examples:"
   echo "bashflix \"some movie title 1080p\""
