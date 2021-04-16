@@ -17,11 +17,20 @@ if [ -z "$1" ] || [ "$query" == "-h" ]; then
   echo "p     Previously watched"
   echo "h     Help"
   echo
-  echo "Examples:" 
+  echo "Examples:"
   echo "bashflix \"some movie title 1080p\""
   echo "bashflix \"some serie title s01e01\" pt"
   echo "bashflix -p"
+  echo 
+  echo "Tips:"
+  echo "* Stuck? \"ctrl+c\" and change the search query;"
+  echo "* Subtitles not synced? Use \"j\" to speed it up or \"h\" to delay it;"
+  echo "* Stopping? \"space\" to PAUSE, wait a few minutes and \"space\" to PLAY;"
+  echo "* What did I watch? \"bashflix -p\" to see which episode to watch next;"
+  echo "* Need help? \"bashflix -h\" shows how to use it;"
+  echo "* From time to time, use \"bashflix -u\" to update bashflix."
   exit 0
+
 fi
 if [ "$query" == "-u" ]; then
   $(bash <(curl -fsSL https://raw.githubusercontent.com/0zz4r/bashflix/master/install.sh))
@@ -82,11 +91,11 @@ if [ -n "${language}" ]; then
   languages+=("en")
   for language in ${languages[@]}; do
     subliminal download -l "$language" -d "/tmp/bashflix/${query}" "${torrent_name}"
-    subtitle=$(find /tmp/bashflix/${query} -maxdepth 1 -name "*${language}*.srt" | head -1)
+    find /tmp/bashflix/${query} -maxdepth 1 -name "*${language}*.srt" | head -1 | xargs -I '{}' mv {} "/tmp/bashflix/${query}/${query}.${language}.srt"
+    subtitle=$(find /tmp/bashflix/${query} -maxdepth 1 -name "${query}.${language}.srt" | head -1)
     if [ -n "$subtitle" ]; then
       echo "Found subtitle for language ${language}"
-      #find /tmp/bashflix/${query} -maxdepth 1 -name "${language}.srt" | head -1 | xargs -I '{}' mv {} "/tmp/bashflix/${query}/${query}.${language}.srt"
-      subtitle=$(find /tmp/bashflix/${query} -maxdepth 1 -name "${language}.srt" | head -1)
+      #subtitle=$(find /tmp/bashflix/${query} -maxdepth 1 -name "${query}.${language}.srt" | head -1)
       #echo $subtitle
       break;
     fi
@@ -103,4 +112,4 @@ fi
 #else
 #  webtorrent download ${magnet} --mpv
 #fi
-rm -rf /tmp/bashflix/*
+#rm -rf /tmp/bashflix/*
