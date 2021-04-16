@@ -34,6 +34,7 @@ if [ -z "$1" ] || [ "$query" == "-h" ]; then
 fi
 if [ "$query" == "-u" ]; then
   $(bash <(curl -fsSL https://raw.githubusercontent.com/0zz4r/bashflix/master/install.sh))
+  echo "Updated!"
   exit 0
 fi
 if [ "$query" == "-p" ]; then
