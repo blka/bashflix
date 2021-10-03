@@ -94,9 +94,11 @@ if [ -n "${language}" ]; then
   done
 fi
 
-echo "Streaming ${torrent_name} with ${subtitle}..."
-if [ -z "${subtitle}" ]; then
+
+if [ -n "${subtitle}" ]; then
+  echo "Streaming ${torrent_name}"
   peerflix ${magnet} --vlc -- --fullscreen
 else
+  echo "Streaming ${torrent_name} with ${subtitle}..."
   peerflix ${magnet} --subtitles ${subtitle} --vlc -- --fullscreen 
 fi
