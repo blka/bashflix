@@ -84,7 +84,8 @@ if [ -n "${language}" ]; then
   languages=("${language}")
   languages+=("en")
   for language in ${languages[@]}; do
-    subliminal download -l "$language" -d "/tmp/bashflix/${query}" "${torrent_name}"
+    echo "Trying to find subtitles for ${torrent_name} in ${language}"
+    subliminal --opensubtitles 0zz4r R4zz0___ download -l "$language" -p opensubtitles -d "/tmp/bashflix/${query}" "${torrent_name}"
     find /tmp/bashflix/${query} -maxdepth 1 -name "*${language}*.srt" | head -1 | xargs -I '{}' mv {} "/tmp/bashflix/${query}/${query}.${language}.srt"
     subtitle=$(find /tmp/bashflix/${query} -maxdepth 1 -name "${query}.${language}.srt" | head -1)
     if [ -n "$subtitle" ]; then
@@ -95,7 +96,7 @@ if [ -n "${language}" ]; then
 fi
 
 
-if [ -n "${subtitle}" ]; then
+if [ -z "${subtitle}" ]; then
   echo "Streaming ${torrent_name}"
   peerflix ${magnet} --vlc -- --fullscreen
 else

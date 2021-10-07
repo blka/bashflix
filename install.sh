@@ -11,7 +11,7 @@ echo ""
 echo "Welcome to bashflix installation script!"
 echo ""
 echo "The following software will be installed:"
-echo "* pirate-get & we-get - torrent search"
+echo "* pirate-get - torrent search"
 echo "* peerflix & vlc - torrent streaming and playing"
 echo "* subliminal - subtitles"
 echo ""
@@ -140,11 +140,8 @@ pip3 install --upgrade pip
 pip3 install --upgrade pirate-get
 pip3 install --upgrade subliminal
 sudo npm install -g npm@latest 
+npm audit fix --force
 sudo npm install -g peerflix
-npm audit fix
-#sudo pip install git+https://github.com/rachmadaniHaryono/we-get
-#sudo npm install webtorrent-cli -g
-#brew install webtorrent-cli
 cd ~
 sudo rm -rf bashflix
 git clone https://github.com/0zz4r/bashflix.git
