@@ -1,13 +1,13 @@
 # bashflix
-Bash script to watch movies and TV shows on Mac OS X and Linux, with subtitles, instantaneously. Just give the name, quickly grab your popcorn and have fun!
+Streaming of video content on MacOS or Linux, with subtitles.
 
 ![](https://media.giphy.com/media/mACRrW4R25kuQLexXn/giphy.gif)
 
 ## How to use?
 Once installed:
-1. Open terminal (`⌘+space`, then type `terminal`, or `ctrl+alt+t`);
-2. Type `bashflix "[query]" [subtitles_language]` and press ENTER;
-4. Wait a few seconds for the player to open.
+1. Open terminal app;
+2. Type `bashflix "QUERY" [subtitles_language]`;
+3. Wait a few seconds for the video player to open.
 
 Examples:
 ```
@@ -18,17 +18,14 @@ bashflix "serie s01e01" pt
 ```
 
 Tips:
-* Stuck? `ctrl+c` and change the search query;
-* Want to select a different result? `bashflix -s "[query]"`
-* Subtitles not synced? Use `j` to speed it up or `h` to delay it;
-* Stopping? `space` to PAUSE, wait a few minutes and `space` to PLAY;
-* What did I watch? `bashflix -p` to see which episodes you previoulsy watched;
-* Need help? `bashflix -h` shows how to use it;
-* From time to time, use `bashflix -u` to update bashflix.
+* If the first torrent doesn't work, add `-s` before `"QUERY"` and then select a different torrent;
+* Subtitles not synced? Press `j` to speed it up or `h` to delay it;
+* What did I watch? Type `bashflix -p` to see which episodes you previoulsy watched;
+* Update bashflix from time to time by running `bashflix -u`.
 
 ## How to install?
-1. Open terminal (`⌘+space`, then type `terminal`, or `ctrl+alt+t`);
-2. Copy & Paste the following command into the terminal and press ENTER:
+1. Open terminal app;
+2. Copy & Run the following command:
 ```
 bash <(curl -fsSL https://raw.githubusercontent.com/0zz4r/bashflix/master/install.sh)
 ```
@@ -36,16 +33,15 @@ Alternatively,
 ```
 bash <(wget -qO - https://raw.githubusercontent.com/0zz4r/bashflix/master/install.sh)
 ```
-3. Input your system password and press ENTER;
+3. Input your system password and press ENTER (needed to install important packages);
 4. Wait a few minutes until it finishes;
 5. (Optional) [Change DNS to 1.1.1.1](https://1.1.1.1/dns/) to prevent torrent search failures.
 
-## How it works?
-It uses [**pirate-get**](https://github.com/vikstrous/pirate-get) for torrent search, [**peerflix**](https://github.com/mafintosh/peerflix) and [**vlc**](https://github.com/videolan/vlc) for torrent streaming and playing,  and [**subliminal**](https://github.com/Diaoul/subliminal) for subtitles.
+## Powered by
+[**pirate-get**](https://github.com/vikstrous/pirate-get) for torrent search, [**peerflix**](https://github.com/mafintosh/peerflix) and [**vlc**](https://github.com/videolan/vlc) for torrent streaming and playing,  and [**subliminal**](https://github.com/Diaoul/subliminal) to download subtitles.
 
 ## Disclaimer
-bashflix is under development. If you want the newer features or bugs fixed, just reinstall it from time to time. Best effort approach is used. Most of the time bashflix will work. Random errors will occur. Unavailability issues will occur. Some torrents and subtitles will not be found. 
-
+bashflix is under development. If you want the newer features or bugs fixed, just updated it from time to time. Some torrents (and subtitles) will not be found or will have few peers, which will make the video stop multiple times.
 Downloading files via torrents might be illegal, depending on the content, so be aware of copyright infringements. Use a VPN for privacy.
 
 ## License
