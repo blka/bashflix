@@ -1,41 +1,36 @@
 # bashflix
-Streaming of video content on MacOS or Linux, with subtitles.
+Video streaming on MacOS and Linux, with subtitles 🍿
 
 ![](https://media.giphy.com/media/mACRrW4R25kuQLexXn/giphy.gif)
 
-## How to use?
-Once installed:
-1. Open terminal app;
-2. Type `bashflix "QUERY" [subtitles_language]`;
-3. Wait a few seconds for the video player to open.
+## How to use
+1. Open terminal app 💻
+2. Type `bashflix "QUERY" [SUBTITLES_LANGUAGE]` ⌨️
+3. Wait a few seconds for the magic to happen ✨
 
-Examples:
+##### Examples:
 ```
 bashflix "movie 1080p"
 ```
 ```
-bashflix "serie s01e01" pt
+bashflix "serie s01e01" en
 ```
 
-Tips:
+## How to install
+1. Open terminal app 💻
+2. Copy & Run the following command: 🏃‍♀️ 
+```
+bash <(curl -fsSL https://raw.githubusercontent.com/0zz4r/bashflix/master/install.sh)
+```
+3. Input your system password and press ENTER (needed to install important packages) 🤫
+4. Wait a few minutes until it finishes; ⏳
+5. (Optional) [Change DNS to 1.1.1.1](https://1.1.1.1/dns/) to prevent torrent search failures 😵
+
+## Tips
 * If the first torrent doesn't work, add `-s` before `"QUERY"` and then select a different torrent;
 * Subtitles not synced? Press `j` to speed it up or `h` to delay it;
 * What did I watch? Type `bashflix -p` to see which episodes you previoulsy watched;
 * Update bashflix from time to time by running `bashflix -u`.
-
-## How to install?
-1. Open terminal app;
-2. Copy & Run the following command:
-```
-bash <(curl -fsSL https://raw.githubusercontent.com/0zz4r/bashflix/master/install.sh)
-```
-Alternatively,
-```
-bash <(wget -qO - https://raw.githubusercontent.com/0zz4r/bashflix/master/install.sh)
-```
-3. Input your system password and press ENTER (needed to install important packages);
-4. Wait a few minutes until it finishes;
-5. (Optional) [Change DNS to 1.1.1.1](https://1.1.1.1/dns/) to prevent torrent search failures.
 
 ## Powered by
 [**pirate-get**](https://github.com/vikstrous/pirate-get) for torrent search, [**peerflix**](https://github.com/mafintosh/peerflix) and [**vlc**](https://github.com/videolan/vlc) for torrent streaming and playing,  and [**subliminal**](https://github.com/Diaoul/subliminal) to download subtitles.
