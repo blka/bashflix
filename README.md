@@ -1,12 +1,12 @@
-# bashflix
-Video streaming on MacOS and Linux, with subtitles 🍿
+# bashflix 🍿
+Video streaming on MacOS and Linux, with subtitles 🎥
 
 ![](https://media.giphy.com/media/mACRrW4R25kuQLexXn/giphy.gif)
 
 ## How to use
 1. Open terminal app 💻
 2. Type `bashflix "QUERY" [SUBTITLES_LANGUAGE]` ⌨️
-3. Wait a few seconds for the magic to happen ✨
+3. Wait a few seconds for the magic to happen ✨ 
 
 ##### Examples:
 ```
