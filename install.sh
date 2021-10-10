@@ -1,10 +1,5 @@
 #!/usr/bin/env bash
 
-case $EUID in
-   0) : ;; # we are running script as root so we are okay
-   *) exec /usr/bin/sudo $0 "${@}" ;; # not root, become root for the rest of this session (and ask for the sudo password only once)
-esac
-
 echo -n "
 Welcome to
 
@@ -89,10 +84,10 @@ if [[ "$OS" == "macos" ]]; then
     if ! which brew &>/dev/null; then
         echo "Preparing to install Homebrew ..."
         /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-        sudo -u ${SUDO_USER:-$USER} brew update
+        brew update
     fi
-    PACMAN="sudo -u ${SUDO_USER:-$USER} brew install"
-    PACSEARCH="sudo -u ${SUDO_USER:-$USER} brew list"
+    PACMAN="brew install"
+    PACSEARCH="brew list"
 else
     declare -A osInfo;
     osInfo[/etc/redhat-release]='dnf --assumeyes install'
@@ -123,9 +118,9 @@ fi
 
 install_package "${PYTHON3}" "${NODE}" "${VLC}"
 
-sudo -u ${SUDO_USER:-$USER} pip3 install --upgrade pirate-get
-sudo -u ${SUDO_USER:-$USER} pip3 install --upgrade subliminal
-sudo -u ${SUDO_USER:-$USER} npm install -g peerflix
+pip3 install --upgrade pirate-get
+pip3 install --upgrade subliminal
+npm install -g peerflix
 
 cd /usr/local/bin/
 curl -s https://raw.githubusercontent.com/0zz4r/bashflix/master/bashflix.sh -o bashflix
