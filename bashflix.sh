@@ -29,7 +29,7 @@ case $1 in
     ;;
 
   "-u" | "--update")
-    $(sudo bash <(curl -s https://raw.githubusercontent.com/0zz4r/bashflix/master/install.sh))
+    $(curl -s https://raw.githubusercontent.com/0zz4r/bashflix/master/install.sh | sudo sh)
     echo "Updated!"
     exit 0
     ;;

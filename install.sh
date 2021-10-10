@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -e
+set -x
 
 echo -n "
 Welcome to
@@ -29,7 +29,7 @@ install_package() {
         if ! $PACSEARCH | grep "^${i}$" > /dev/null 2>&1
         then
             echo "Installing ${i}"
-            $PACMAN "${i}" && PACINSTALL=true
+            $PACMAN ${i} && PACINSTALL=true
         fi
     done
     if [[ "${PACINSTALL}" == true ]]
