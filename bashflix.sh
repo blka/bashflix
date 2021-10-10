@@ -9,36 +9,34 @@ case $1 in
     ██████╔╝███████║███████╗███████║█████╗  ██║     ██║ ╚███╔╝ 
     ██╔══██╗██╔══██║╚════██║██╔══██║██╔══╝  ██║     ██║ ██╔██╗ 
     ██████╔╝██║  ██║███████║██║  ██║██║     ███████╗██║██╔╝ ██╗
-    ╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═╝     ╚══════╝╚═╝╚═╝  ╚═╝                                    
+    ╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═╝     ╚══════╝╚═╝╚═╝  ╚═╝
+
     "
-    echo "Bash script to watch movies and TV shows on Mac OS X and Linux, with subtitles, instantaneously. Just give the name, quickly grab your popcorn and have fun!"
+    echo "Video streaming on MacOS and Linux, with subtitles."
     echo
-    echo "Syntax: bashflix [option] OR [\"movie / series sXXeYY\" [subtitles_language]]"
+    echo "Syntax: 'bashflix [options] \"query\" [subtitles_language]'"
     echo "options:"
     echo "-u, --update                Update bashflix"
     echo "-p, --previously-watched    Previously watched"
     echo "-s, --select-torrent        Select torrent"
     echo 
     echo "Tips:"
-    echo "* Stuck? \"ctrl+c\" and change the search query;"
-    echo "* Want to select a different result? \"bashflix -s\";"
-    echo "* Subtitles not synced? Use \"j\" to speed it up or \"h\" to delay it;"
-    echo "* Stopping? \"space\" to PAUSE, wait a few minutes and \"space\" to PLAY;"
-    echo "* What did I watch? \"bashflix -p\" to see which episode to watch next;"
-    echo "* Need help? \"bashflix -h\" shows how to use it;"
-    echo "* From time to time, use \"bashflix -u\" to update bashflix."
+    echo "* If the first torrent doesn't work, add '-s' before \"QUERY\" and then select a different torrent;"
+    echo "* Subtitles not synced? Press 'j' to speed it up or 'h' to delay it;"
+    echo "* What did I watch? Type 'bashflix -p' to see which episodes you previoulsy watched;"
+    echo "* Update bashflix from time to time by running 'bashflix -u'."
     exit 0
     ;;
 
   "-u" | "--update")
-    $(bash <(curl -fsSL https://raw.githubusercontent.com/0zz4r/bashflix/master/install.sh))
+    $(sudo bash <(curl -s https://raw.githubusercontent.com/0zz4r/bashflix/master/install.sh))
     echo "Updated!"
     exit 0
     ;;
 
   "-p" | "--previously-watched")
     echo "Previously watched:"
-    echo "$(cat $HOME/.bashflix_history)"
+    echo "$(head ~/.bashflix)"
     exit 0
     ;;
 
@@ -61,7 +59,7 @@ case $1 in
     ;;
 esac
 
-echo "$query" | cat - $HOME/.bashflix_history > temp && mv temp $HOME/.bashflix_history
+echo "$query" | cat - ~/.bashflix > temp && mv temp ~/.bashflix
   
 if [ -z $magnet ]; then
   echo "Could not find torrent for query ${query}." 
