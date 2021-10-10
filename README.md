@@ -20,7 +20,7 @@ bashflix "serie s01e01" en
 1. Open terminal app 💻
 2. Copy & Run the following command: 🏃‍♀️ 
 ```
-curl -s https://raw.githubusercontent.com/0zz4r/bashflix/master/install.sh | sudo sh
+bash <(curl -s https://raw.githubusercontent.com/0zz4r/bashflix/master/install.sh)
 ```
 3. Input your system password and press ENTER (needed to install important packages) 🤫
 4. Wait a few minutes until it finishes; ⏳

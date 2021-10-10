@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-set -x
+
+exec /usr/bin/sudo $0 "${@}"
 
 echo -n "
 Welcome to
