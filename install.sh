@@ -123,6 +123,7 @@ pip3 install --upgrade subliminal
 npm install -g peerflix
 
 cd /usr/local/bin/
+rm bashflix
 curl -s https://raw.githubusercontent.com/0zz4r/bashflix/master/bashflix.sh -o bashflix
 chmod +x bashflix
-touch ~/.bashflix
+touch ~/.bashflix # previously watched
