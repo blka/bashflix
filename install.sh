@@ -144,7 +144,7 @@ done
 # Install unmet deps.
 if (( ndeps=${#deps[@]} )); then
     if [[ $OS == macos ]]; then
-        check_for Homebrew || install_brew
+        check_for brew || install_brew
 
         # Special case. https://formulae.brew.sh/cask/vlc
         if [[ -v deps[vlc] ]]; then
