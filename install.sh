@@ -1,6 +1,98 @@
 #!/usr/bin/env bash
 
-echo -n "
+set -eu
+
+bye () {
+    printf '%s\n' "$1"
+    exit 1
+}
+
+# Test for a binary in $PATH.
+in_path () {
+    type -P "$1" >/dev/null
+}
+
+# Verbose in_path().
+check_for () {
+    echo -n "Check for $1 .. "
+
+    if ! in_path "$1"; then
+        echo 'not found'
+        return 1
+    fi
+
+    echo OK
+}
+
+install_brew () {
+    echo 'Install Homebrew ..'
+
+    # https://docs.brew.sh/Installation
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+
+    brew update
+}
+
+# ------------
+
+[[ $EUID == 0 ]] || bye 'Run this script with sudo.'
+
+OS=
+case $(uname -s) in
+    Darwin)
+        OS=macos
+
+        pkg_install () {
+            brew install "$@"
+        }
+        ;;
+
+    Linux)
+        # Test both for magic pathes and supposed package manager
+        # binaries.
+
+        if in_path pacman && [[ -f /etc/arch-release ]]; then
+            OS=arch
+
+            pkg_install () {
+                pacman -S --noconfirm "$@"
+            }
+        elif in_path apt-get && [[ -f /etc/debian_version ]]; then
+            OS=debian
+
+            pkg_install () {
+                apt-get --assume-yes install "$@"
+            }
+        elif in_path dnf && [[ -f /etc/redhat-release ]]; then
+            OS=fedora
+
+            pkg_install () {
+                dnf --assumeyes install "$@"
+            }
+        elif in_path zypper; then
+            # Quote from https://en.opensuse.org/Etc_SuSE-release:
+            #
+            # The file /etc/SuSE-release has been marked as
+            # depreciated since openSUSE 13.1 and will no longer be
+            # present in openSUSE Leap 15.0. Please adjust your
+            # software (or file bug reports) to use /etc/os-release
+            # instead.
+            #
+            if [[ -f /etc/SuSE-release ]] || grep -iq opensuse /etc/os-release; then
+                OS=suse
+
+                pkg_install () {
+                    zypper install --no-confirm "$@"
+                }
+            fi
+        fi
+        ;;
+esac
+
+[[ -n $OS ]] || bye 'Your OS is not supported.'
+
+cat <<-EOF
+
 Welcome to
 
     ██████╗  █████╗ ███████╗██╗  ██╗███████╗██╗     ██╗██╗  ██╗
@@ -20,110 +112,57 @@ This script will attempt to install the following software:
 * subliminal
 * peerflix
 
-"
+EOF
 
-install_package() {
-    PACINSTALL=false
-    for i in "${@}"; do
-        if ! $PACSEARCH | grep "^${i}$" > /dev/null 2>&1
-        then
-            echo "Installing ${i}"
-            $PACMAN ${i} && PACINSTALL=true
-        fi
-    done
-    if [[ "${PACINSTALL}" == true ]]
-    then
-        return 0
-    else
-        return 1
-    fi
-}
+# Generic tools to packages mapping.
+declare -A deps=(
+    [curl]=curl
+    [pip3]=python3-pip
+    [npm]=npm
+    [vlc]=vlc
+)
 
-if [[ $(uname -s) == "Darwin" ]]
-then
-    KERNEL="Darwin"
-    OS="macos"
-elif [[ $(uname -s) == "Linux" ]]
-then
-    KERNEL="Linux"
-    if [[ -f /etc/arch-release ]]
-    then
-        OS="arch"
-    elif [[ -f /etc/debian_version ]]
-    then
-        OS="debian"
-    elif [[ -f /etc/redhat-release ]]
-    then
-        OS="fedora"
-    fi
-else
-    exit 1
-fi
-
-PYTHON3='python3'
-PIP3='python3-pip'
-NPM='npm'
-NODE='nodejs'
-VLC='VLC'
+# OS-specific overrides for $deps.
 case $OS in
     macos)
-        PYTHON3='python' # Includes pip3 on macOS
-        NODE='node'
-        VLC='--cask vlc'
+        deps[pip3]=python       # Provides pip3
+        deps[npm]=node          # Provides npm
         ;;
+
     arch)
-        PYTHON3='python'
-        PIP3='python-pip'
+        deps[pip3]=python-pip
         ;;
-    debian) ;;
-    fedora) ;;
 esac
 
-if [[ "$OS" == "macos" ]]; then
-    echo "Looking for Homebrew ..."
-    if ! which brew &>/dev/null; then
-        echo "Preparing to install Homebrew ..."
-        /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-        brew update
+# Skip satisfied deps.
+for bin in "${!deps[@]}"; do
+    if check_for "$bin"; then
+        unset -v "deps[$bin]"
     fi
-    PACMAN="brew install"
-    PACSEARCH="brew list"
-else
-    declare -A osInfo;
-    osInfo[/etc/redhat-release]='dnf --assumeyes install'
-    osInfo[/etc/arch-release]='pacman -S --noconfirm'
-    osInfo[/etc/gentoo-release]='emerge'
-    osInfo[/etc/SuSE-release]='zypper in'
-    osInfo[/etc/debian_version]='apt-get --assume-yes install'
-    declare -A osSearch;
-    osSearch[/etc/redhat-release]='dnf list installed'
-    osSearch[/etc/arch-release]='pacman -Qq'
-    osSearch[/etc/gentoo-release]="cd /var/db/pkg/ && ls -d */*| sed 's/\/$//'"
-    osSearch[/etc/SuSE-release]='rpm -qa'
-    osSearch[/etc/debian_version]='dpkg -l' # previously `apt list --installed`.  Can use `apt-cache search`.
-    for f in "${!osInfo[@]}"
-    do
-        if [[ -f $f ]];then
-            PACMAN="${osInfo[$f]}"
+done
+
+# Install unmet deps.
+if (( ndeps=${#deps[@]} )); then
+    if [[ $OS == macos ]]; then
+        check_for Homebrew || install_brew
+
+        # Special case. https://formulae.brew.sh/cask/vlc
+        if [[ -v deps[vlc] ]]; then
+            pkg_install --cask vlc
+            unset -v 'deps[vlc]'
+            ((ndeps--))
         fi
-    done
-    for s in "${!osSearch[@]}"
-    do
-        if [[ -f $s ]];then
-            PACSEARCH="${osSearch[$s]}"
-        fi
-    done
-    install_package "${PIP3}" "${NPM}"
+    fi
+
+    (( ndeps )) && pkg_install "${deps[@]}"
 fi
 
-install_package "${PYTHON3}" "${NODE}" "${VLC}"
+# ------------
 
 pip3 install --upgrade pirate-get
 pip3 install --upgrade subliminal
 npm install -g peerflix
 
-cd /usr/local/bin/
-rm bashflix
+cd /usr/local/bin
 curl -s https://raw.githubusercontent.com/0zz4r/bashflix/master/bashflix.sh -o bashflix
 chmod +x bashflix
-touch ~/.bashflix # previously watched
