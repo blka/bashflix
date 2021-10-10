@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
-exec /usr/bin/sudo $0 "${@}"
+case $EUID in
+   0) : ;; # we are running script as root so we are okay
+   *) exec /usr/bin/sudo $0 "${@}" ;; # not root, become root for the rest of this session (and ask for the sudo password only once)
+esac
 
 echo -n "
 Welcome to
