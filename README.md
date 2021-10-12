@@ -26,9 +26,7 @@ bashflix "serie s01e01" en
 ```
 curl https://raw.githubusercontent.com/0zz4r/bashflix/master/install.sh | sudo bash -
 ```
-3. Input your system password and press ENTER (needed to install important packages) 🤫
-4. Wait a few minutes until it finishes; ⏳
-5. (Optional) [Change DNS to 1.1.1.1](https://1.1.1.1/dns/) to prevent torrent search failures 😵
+4. (Optional) [Change DNS to 1.1.1.1](https://1.1.1.1/dns/) to prevent torrent search failures 😵
 
 ## Tips
 * If the first torrent doesn't work, add `-s` before `"QUERY"` and then select a different torrent;
