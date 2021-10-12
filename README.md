@@ -18,9 +18,13 @@ bashflix "serie s01e01" en
 
 ## How to install
 1. Open terminal app 💻
-2. Copy & Run the following command: 🏃‍♀️ 
+2. (Only MacOS) Install Homebrew and update Bash by running: 🍺
+``` 
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" && brew install bash
 ```
-bash <(curl -s https://raw.githubusercontent.com/0zz4r/bashflix/master/install.sh)
+3. Run install script: 🏃‍♀️ 
+```
+curl https://raw.githubusercontent.com/0zz4r/bashflix/master/install.sh | sudo bash -
 ```
 3. Input your system password and press ENTER (needed to install important packages) 🤫
 4. Wait a few minutes until it finishes; ⏳

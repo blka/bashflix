@@ -9,7 +9,7 @@ bye () {
 
 # Test for a binary in $PATH.
 in_path () {
-    type -P "$1" >/dev/null
+    type -p "$1" >/dev/null
 }
 
 # Verbose in_path().
@@ -24,14 +24,14 @@ check_for () {
     echo OK
 }
 
-install_brew () {
-    echo 'Install Homebrew ..'
+# install_brew () {
+#     echo 'Install Homebrew ..'
 
-    # https://docs.brew.sh/Installation
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+#     # https://docs.brew.sh/Installation
+#     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 
-    brew update
-}
+#     brew update
+# }
 
 # ------------
 
@@ -43,7 +43,7 @@ case $(uname -s) in
         OS=macos
 
         pkg_install () {
-            brew install "$@"
+            sudo -u ${SUDO_USER:-$USER} brew install "$@"
         }
         ;;
 
@@ -91,6 +91,8 @@ esac
 
 [[ -n $OS ]] || bye 'Your OS is not supported.'
 
+clear
+
 cat <<-EOF
 
 Welcome to
@@ -122,11 +124,15 @@ declare -A deps=(
     [vlc]=vlc
 )
 
+MACOS_VLC=/Applications/VLC.app/Contents/MacOS/VLC
+
 # OS-specific overrides for $deps.
 case $OS in
     macos)
         deps[pip3]=python       # Provides pip3
         deps[npm]=node          # Provides npm
+        deps[$MACOS_VLC]=$MACOS_VLC
+        unset -v 'deps[vlc]'
         ;;
 
     arch)
@@ -144,12 +150,12 @@ done
 # Install unmet deps.
 if (( ndeps=${#deps[@]} )); then
     if [[ $OS == macos ]]; then
-        check_for brew || install_brew
+        #check_for brew || install_brew
 
         # Special case. https://formulae.brew.sh/cask/vlc
-        if [[ -v deps[vlc] ]]; then
+        if [[ -v deps[$MACOS_VLC] ]]; then
             pkg_install --cask vlc
-            unset -v 'deps[vlc]'
+            unset -v 'deps[$MACOS_VLC]'
             ((ndeps--))
         fi
     fi
@@ -159,10 +165,13 @@ fi
 
 # ------------
 
-pip3 install --upgrade pirate-get
-pip3 install --upgrade subliminal
-npm install -g peerflix
+sudo -u ${SUDO_USER:-$USER} pip3 install --upgrade pirate-get
+sudo -u ${SUDO_USER:-$USER} pip3 install --upgrade subliminal
+sudo -u ${SUDO_USER:-$USER} npm install -g peerflix
 
 cd /usr/local/bin
 curl -s https://raw.githubusercontent.com/0zz4r/bashflix/master/bashflix.sh -o bashflix
 chmod +x bashflix
+
+echo 'Bashflix is installed and updated!'
+bashflix
