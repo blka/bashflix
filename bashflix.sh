@@ -30,7 +30,7 @@ case $1 in
     ;;
 
   "update")
-    $(sudo bash -c "$(curl -s https://raw.githubusercontent.com/0zz4r/bashflix/master/install.sh))
+    $(sudo bash -c "$(curl -s https://raw.githubusercontent.com/0zz4r/bashflix/master/install.sh)")
     echo "Updated!"
     exit 0
     ;;

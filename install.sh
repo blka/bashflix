@@ -171,5 +171,5 @@ curl -s https://raw.githubusercontent.com/0zz4r/bashflix/master/bashflix.sh -o b
 chmod +x bashflix
 touch ~/bashflix_previously.txt
 
-echo 'Bashflix is installed and updated!'
+echo 'Bashflix installed and updated!'
 bashflix
