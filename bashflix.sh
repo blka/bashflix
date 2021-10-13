@@ -2,7 +2,7 @@
 
 case $1 in
 
-  "-h" | "--help" | "")
+  "help" | "")
     echo -n "
     ██████╗  █████╗ ███████╗██╗  ██╗███████╗██╗     ██╗██╗  ██╗
     ██╔══██╗██╔══██╗██╔════╝██║  ██║██╔════╝██║     ██║╚██╗██╔╝
@@ -19,12 +19,13 @@ case $1 in
     echo "  update        Update bashflix"
     echo "  previously    Previously watched"
     echo "  select        Select torrent from list"
+    echo "  help          See this text"
     echo 
     echo "Tips:"
-    echo "* If the first torrent doesn't work, add 'select' before \"query\" and then select a different torrent;"
-    echo "* Subtitles not synced? Press 'j' to speed it up or 'h' to delay it;"
-    echo "* What did I watch? Type 'bashflix previously' to see which episodes you previoulsy watched;"
-    echo "* Update bashflix from time to time by running 'bashflix update'."
+    echo "  * If the first torrent doesn't work, add 'select' before \"query\" and then select a different torrent;"
+    echo "  * Subtitles not synced? Press 'j' to speed it up or 'h' to delay it;"
+    echo "  * What did I watch? Type 'bashflix previously' to see which episodes you previoulsy watched;"
+    echo "  * Update bashflix from time to time by running 'bashflix update'."
     exit 0
     ;;
 
