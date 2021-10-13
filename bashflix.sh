@@ -18,31 +18,31 @@ case $1 in
     echo
     echo "Syntax: 'bashflix [options] \"query\" [subtitles_language]'"
     echo "options:"
-    echo "-u, --update                Update bashflix"
-    echo "-p, --previously-watched    Previously watched"
-    echo "-s, --select-torrent        Select torrent"
+    echo "  update        Update bashflix"
+    echo "  previously    Previously watched"
+    echo "  select        Select torrent from list"
     echo 
     echo "Tips:"
-    echo "* If the first torrent doesn't work, add '-s' before \"QUERY\" and then select a different torrent;"
+    echo "* If the first torrent doesn't work, add 'select' before \"query\" and then select a different torrent;"
     echo "* Subtitles not synced? Press 'j' to speed it up or 'h' to delay it;"
-    echo "* What did I watch? Type 'bashflix -p' to see which episodes you previoulsy watched;"
-    echo "* Update bashflix from time to time by running 'bashflix -u'."
+    echo "* What did I watch? Type 'bashflix previously' to see which episodes you previoulsy watched;"
+    echo "* Update bashflix from time to time by running 'bashflix update'."
     exit 0
     ;;
 
-  "-u" | "--update")
-    $(bash <(curl -s https://raw.githubusercontent.com/0zz4r/bashflix/master/install.sh))
+  "update")
+    $(curl https://raw.githubusercontent.com/0zz4r/bashflix/master/install.sh | sudo bash -)
     echo "Updated!"
     exit 0
     ;;
 
-  "-p" | "--previously-watched")
+  "previously")
     echo "Previously watched:"
-    echo "$(head ~/.bashflix)"
+    echo "$(head ~/bashflix_previously.txt)"
     exit 0
     ;;
 
-  "-s" | "--select-torrent")
+  "select")
     query="$2"
     query="${query#\ }"
     query="${query%\ }"
@@ -61,7 +61,7 @@ case $1 in
     ;;
 esac
 
-echo "$query" | cat - ~/.bashflix > temp && mv temp ~/.bashflix
+echo "$query" | cat - ~/bashflix_previously.txt > temp && mv temp ~/bashflix_previously.txt
   
 if [ -z $magnet ]; then
   echo "Could not find torrent for query ${query}." 
