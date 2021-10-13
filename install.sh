@@ -14,14 +14,9 @@ in_path () {
 
 # Verbose in_path().
 check_for () {
-    echo -n "Check for $1 .. "
-
     if ! in_path "$1"; then
-        echo 'not found'
         return 1
     fi
-
-    echo OK
 }
 
 # install_brew () {
@@ -165,8 +160,10 @@ fi
 
 # ------------
 
-pip3 install --upgrade pirate-get
-pip3 install --upgrade subliminal
+sudo -u ${SUDO_USER:-$USER} pip3 install --upgrade pirate-get
+sudo -u ${SUDO_USER:-$USER} pip3 install --upgrade subliminal
+rm -rf /usr/local/lib/node_modules/peerflix
+npm uninstall -g peerflix --save
 npm install -g peerflix
 
 cd /usr/local/bin
