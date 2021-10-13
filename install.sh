@@ -161,8 +161,6 @@ fi
 # ------------
 
 sudo -u ${SUDO_USER:-$USER} pip3 install --upgrade pirate-get
-echo "export PATH=\"$HOME/.local/bin:$PATH\"" >> ~/.bashrc
-source ~/.bashrc
 sudo -u ${SUDO_USER:-$USER} pip3 install --upgrade subliminal
 rm -rf /usr/local/lib/node_modules/peerflix
 npm uninstall -g peerflix --save
