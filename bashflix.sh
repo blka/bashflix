@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-clear
-
 case $1 in
 
   "-h" | "--help" | "")
