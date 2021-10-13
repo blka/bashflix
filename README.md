@@ -31,8 +31,8 @@ curl https://raw.githubusercontent.com/0zz4r/bashflix/master/install.sh | sudo b
 ## Tips
 * If the first torrent doesn't work, add `-s` before `"QUERY"` and then select a different torrent;
 * Subtitles not synced? Press `j` to speed it up or `h` to delay it;
-* What did I watch? Type `bashflix -p` to see which episodes you previoulsy watched;
-* Update bashflix from time to time by running `bashflix -u`.
+* What did I watch? Type `bashflix previously` to see which episodes you previoulsy watched;
+* Update bashflix from time to time by running `bashflix update`.
 
 ## Powered by
 [**pirate-get**](https://github.com/vikstrous/pirate-get) for torrent search, [**peerflix**](https://github.com/mafintosh/peerflix) and [**vlc**](https://github.com/videolan/vlc) for torrent streaming and playing,  and [**subliminal**](https://github.com/Diaoul/subliminal) to download subtitles.
