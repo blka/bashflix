@@ -165,9 +165,9 @@ fi
 
 # ------------
 
-sudo -u ${SUDO_USER:-$USER} pip3 install --upgrade pirate-get
-sudo -u ${SUDO_USER:-$USER} pip3 install --upgrade subliminal
-sudo -u ${SUDO_USER:-$USER} npm install -g peerflix
+pip3 install --upgrade pirate-get
+pip3 install --upgrade subliminal
+npm install -g peerflix
 
 cd /usr/local/bin
 curl -s https://raw.githubusercontent.com/0zz4r/bashflix/master/bashflix.sh -o bashflix
