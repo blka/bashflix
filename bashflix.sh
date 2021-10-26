@@ -48,6 +48,7 @@ case $1 in
     query="${query// /.}"
     magnet=$(pirate-get -C 'echo "%s"' "${query}" | tail -n 1)
     magnet="${magnet:2}"
+    language=$3
     ;;
 
   *)
@@ -57,6 +58,7 @@ case $1 in
     query="${query%\ }"
     query="${query// /.}"
     magnet=$(pirate-get -0 -C 'echo "%s"' "${query}" | tail -n 1)
+    language=$2
     ;;
 esac
 
@@ -70,7 +72,6 @@ else
   echo "Torrent found: ${magnet}"
 fi
 
-language=$2
 subtitle=""
 if [ -n "${language}" ]; then
   echo "Searching the best subtitles..."
