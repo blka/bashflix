@@ -58,19 +58,20 @@ case $1 in
     query="${query%\ }"
     query="${query// /.}"
     magnet=$(pirate-get -0 -C 'echo "%s"' "${query}" | tail -n 1)
+
+    if [ -z $magnet ]; then
+      echo "Could not find torrent for query ${query}." 
+      echo "Please change the query."
+      exit 1
+    else
+      echo "Torrent found: ${magnet}"
+    fi
+
     language=$2
     ;;
 esac
 
 echo "$query" | cat - ~/bashflix_previously.txt > temp && mv temp ~/bashflix_previously.txt
-  
-if [ -z $magnet ]; then
-  echo "Could not find torrent for query ${query}." 
-  echo "Please change the query."
-  exit 1
-else
-  echo "Torrent found: ${magnet}"
-fi
 
 subtitle=""
 if [ -n "${language}" ]; then
