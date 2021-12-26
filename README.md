@@ -1,7 +1,8 @@
 # bashflix 🍿
 Video streaming on MacOS and Linux, with subtitles 🎥
 
-![](https://media.giphy.com/media/wcL3vT17xMLluPArQj/giphy.gif)
+![](https://media.giphy.com/media/KeHU2lgmJG48m4hzp8/giphy.gif)
+
 
 # How to use
 1. Open terminal app 💻
