@@ -1,7 +1,7 @@
 # bashflix 🍿
 Video streaming on MacOS and Linux, with subtitles 🎥
 
-![](https://media.giphy.com/media/mACRrW4R25kuQLexXn/giphy.gif)
+![](https://media.giphy.com/media/wcL3vT17xMLluPArQj/giphy.gif)
 
 # How to use
 1. Open terminal app 💻
@@ -29,7 +29,7 @@ sudo bash -c "$(curl -s https://raw.githubusercontent.com/0zz4r/bashflix/master/
 4. (Optional) [Change DNS to 1.1.1.1](https://1.1.1.1/dns/) to prevent torrent search failures 😵
 
 # Tips
-* If the first torrent doesn't work, add `select` before `"QUERY"` and type the torrent number;"
+* If the first torrent doesn't work, add `select` before `"QUERY"` and type the torrent number;
 * Subtitles not synced? Press `j` to speed it up or `h` to delay it;
 * What did I watch? Type `bashflix previously` to see which episodes you previoulsy watched;
 * Update bashflix from time to time by running `bashflix update`.
