@@ -173,4 +173,4 @@ touch ~/bashflix_previously.txt
 
 echo 'Bashflix installed!'
 echo
-bashflix
+bashflix -h
