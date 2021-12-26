@@ -169,7 +169,7 @@ npm install -g peerflix
 cd /usr/local/bin
 curl -s https://raw.githubusercontent.com/0zz4r/bashflix/master/bashflix.sh -o bashflix
 chmod +x bashflix
-touch ~/bashflix_previously.txt
+sudo -u ${SUDO_USER:-$USER} touch ~/bashflix_previously.txt
 
 echo 'Bashflix installed!'
 echo
