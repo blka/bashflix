@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-set -ex
-
 POSITIONAL=()
 while [[ $# -gt 0 ]]; do
   key="$1"
