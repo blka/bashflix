@@ -99,7 +99,7 @@ Welcome to
     ██████╔╝██║  ██║███████║██║  ██║██║     ███████╗██║██╔╝ ██╗
     ╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═╝     ╚══════╝╚═╝╚═╝  ╚═╝
 
-This script will attempt to install the following software:
+This script will install the following software:
 * python
 * pip
 * npm
@@ -171,5 +171,6 @@ curl -s https://raw.githubusercontent.com/0zz4r/bashflix/master/bashflix.sh -o b
 chmod +x bashflix
 touch ~/bashflix_previously.txt
 
-echo 'Bashflix installed and updated!'
+echo 'Bashflix installed!'
+echo
 bashflix
