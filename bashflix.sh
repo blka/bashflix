@@ -21,8 +21,8 @@ while [[ $# -gt 0 ]]; do
       "
       echo "Video streaming on MacOS and Linux, with subtitles."
       echo 
-      echo "Quick start: bashflix \"movie 1080p\" en"
-      echo "             bashflix \"QUERY\" [SUBTITLES_LANGUAGE]"
+      echo "Quick start: bashflix \"QUERY\" [SUBTITLES_LANGUAGE]"
+      echo "       e.g.: bashflix \"serie s01e01 1080p\" en"  
       echo 
       echo "Usage: 'bashflix [COMMAND] [OPTIONS]'"
       echo
@@ -39,7 +39,7 @@ while [[ $# -gt 0 ]]; do
       echo "  * Run 'bashflix update';"
       echo "  * Add 'select' before \"QUERY\";"
       echo "  * Pause video and wait a bit;"
-      echo "  * To sync subtitles, press `j` to speed it up or `h` to delay it."
+      echo "  * To sync subtitles, press 'j' to speed it up or 'h' to delay it."
       echo "  * Change DNS to 1.1.1.1 - https://1.1.1.1/dns/"
       echo "  * Please report the issue here: https://github.com/0zz4r/bashflix/issues/new/choose"
       echo

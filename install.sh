@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -x
+
 # Test for a binary in $PATH.
 in_path () {
     type -p "$1" >/dev/null
@@ -149,6 +151,11 @@ npm uninstall -g peerflix --save
 npm install -g peerflix
 
 touch ~/bashflix_previously.txt
-curl -s https://raw.githubusercontent.com/0zz4r/bashflix/master/bashflix.sh -o /usr/local/bin/bashflix
-chmod +x /usr/local/bin/bashflix
+mkdir -p ~/bin
+curl -s https://raw.githubusercontent.com/0zz4r/bashflix/master/bashflix.sh -o ~/bin/bashflix
+chmod +x ~/bin/bashflix
+echo "export PATH=\"$HOME/bin:$PATH\"" >> ~/.bashrc
+echo "export PATH=\"$HOME/bin:$PATH\"" >> ~/.zshrc
+source ~/.bashrc
+source ~/.zshrc
 bashflix -h
