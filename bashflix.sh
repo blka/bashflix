@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+#set -exu
+
+SELECT=false
+PLAYER="vlc"
 POSITIONAL=()
 while [[ $# -gt 0 ]]; do
   key="$1"
@@ -30,16 +34,19 @@ while [[ $# -gt 0 ]]; do
       echo "Options:"
       echo "  -h, --help            See this text"
       echo "  -p, --player PLAYER   Specify the player"
-      echo 
-      echo "Tips:"
-      echo "  * If the first torrent doesn't work, add 'select' before \"QUERY\" and type the torrent number;"
-      echo "  * Subtitles not synced? Press 'j' to speed it up or 'h' to delay it;"
-      echo "  * What did I watch? Type 'bashflix previously' to see which episodes you previoulsy watched;"
-      echo "  * Update bashflix from time to time by running 'bashflix update'."
+      echo
+      echo "Not working?"
+      echo "  * Run 'bashflix update';"
+      echo "  * Add 'select' before \"QUERY\";"
+      echo "  * Pause video and wait a bit;"
+      echo "  * To sync subtitles, press `j` to speed it up or `h` to delay it."
+      echo "  * Change DNS to 1.1.1.1 - https://1.1.1.1/dns/"
+      echo "  * Please report the issue here: https://github.com/0zz4r/bashflix/issues/new/choose"
+      echo
       exit 0
       ;;
     u|update)
-      $(sudo bash -c "$(curl -s https://raw.githubusercontent.com/0zz4r/bashflix/master/install.sh)")
+      bash -c "$(curl -s https://raw.githubusercontent.com/0zz4r/bashflix/master/install.sh)"
       echo "Updated!"
       exit 0
       ;;
@@ -49,20 +56,14 @@ while [[ $# -gt 0 ]]; do
       exit 0
       ;;
     s|select)
+      SELECT=true
       QUERY="$2"
       if [ -n "$2" ] && [[ "$2" != *"-"* ]]; then
         SUBTITLES_LANGUAGE="$3"
         shift
       fi
       shift # past argument
-      shift # past value
-      
-
-      query="${QUERY#\ }"
-      query="${query%\ }"
-      query="${query// /.}"
-      magnet=$(pirate-get -C 'echo "%s"' "${query}" | tail -n 1)
-      magnet="${magnet:2}"
+      shift # past value      
       ;;
     -p|--player)
       PLAYER="$2"
@@ -79,61 +80,53 @@ while [[ $# -gt 0 ]]; do
         shift
       fi
       shift
-
-      echo "Searching the best torrent..."
-      query="${QUERY#\ }"
-      query="${query%\ }"
-      query="${query// /.}"
-      magnet=$(pirate-get -0 -C 'echo "%s"' "${query}" | tail -n 1)
-
-      if [ -z $magnet ]; then
-        echo "Could not find torrent for query ${query}." 
-        echo "Please change the query."
-        exit 1
-      else
-        echo "Torrent found: ${magnet}"
-      fi
       ;;
   esac
 done
 
 set -- "${POSITIONAL[@]}" # restore positional parameters
 
-echo "${query}" | cat - ~/bashflix_previously.txt > temp && mv temp ~/bashflix_previously.txt
+query="${QUERY#\ }"
+query="${query%\ }"
+query="${query// /.}"
 
-language="${SUBTITLES_LANGUAGE}"
-if [ -z "${PLAYER}" ]; then
-  PLAYER="vlc"
+if [ "$SELECT" = true ]; then
+  out=$(pirate-get --total-results 10 -C 'echo "%s"' "${query}" | tail -n 1)
+  magnet="${out:2}"
+else
+  magnet=$(pirate-get --total-results 10 -0 -C 'echo "%s"' "${query}" | tail -n 1)
+  if [ -z $magnet ]; then
+    echo "Not Found."
+    exit 1
+  else
+    echo "${magnet}"
+  fi
 fi
 
-subtitle=""
-if [ -n "${language}" ]; then
-  echo "Searching the best subtitles..."
+echo "${query}" | cat - ~/bashflix_previously.txt > temp && mv temp ~/bashflix_previously.txt
+
+if [ -n "${SUBTITLES_LANGUAGE}" ]; then
   torrent_name_param=$(awk -F "&" '{print $2}' <<< "$magnet")
   torrent_name_dirty=$(awk -F "=" '{print $2}' <<< "$torrent_name_param")
   torrent_name_raw=$(echo "${torrent_name_dirty}" | sed -e 's/%\([0-9A-F][0-9A-F]\)/\\\\\x\1/g')
   torrent_name_escaped=$(echo -e "${torrent_name_raw}")
   torrent_name=$(echo -e "${torrent_name_escaped}")
   mkdir -p "/tmp/bashflix/${query}"
-  languages=("${language}")
-  languages+=("en")
+  languages=("${SUBTITLES_LANGUAGE}" "en")
+  echo "Searching subtitles for ${torrent_name}"
   for language in ${languages[@]}; do
-    echo "Trying to find subtitles for ${torrent_name} in ${language}"
     subliminal --opensubtitles 0zz4r R4zz0___ download -l "${language}" -p opensubtitles -d "/tmp/bashflix/${query}" "${torrent_name}"
     find /tmp/bashflix/${query} -maxdepth 1 -name "*${language}*.srt" | head -1 | xargs -I '{}' mv {} "/tmp/bashflix/${query}/${query}.${language}.srt"
     subtitle=$(find /tmp/bashflix/${query} -maxdepth 1 -name "${query}.${language}.srt" | head -1)
     if [ -n "${subtitle}" ]; then
-      echo "Found subtitle for language ${language}"
+      echo "Found ${language} subtitles"
       break;
     fi
   done
 fi
 
-
 if [ -z "${subtitle}" ]; then
-  echo "Streaming ${torrent_name}"
   peerflix "${magnet}" --"${PLAYER}" -- --fullscreen
 else
-  echo "Streaming ${torrent_name} with ${subtitle}..."
   peerflix "${magnet}" -t "${subtitle}" --"${PLAYER}" -- --fullscreen 
 fi

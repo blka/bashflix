@@ -1,12 +1,5 @@
 #!/usr/bin/env bash
 
-set -eu
-
-bye () {
-    printf '%s\n' "$1"
-    exit 1
-}
-
 # Test for a binary in $PATH.
 in_path () {
     type -p "$1" >/dev/null
@@ -19,18 +12,7 @@ check_for () {
     fi
 }
 
-# install_brew () {
-#     echo 'Install Homebrew ..'
-
-#     # https://docs.brew.sh/Installation
-#     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-
-#     brew update
-# }
-
 # ------------
-
-[[ $EUID == 0 ]] || bye 'Run this script with sudo.'
 
 OS=
 case $(uname -s) in
@@ -38,7 +20,7 @@ case $(uname -s) in
         OS=macos
 
         pkg_install () {
-            sudo -u ${SUDO_USER:-$USER} brew install "$@"
+            brew install "$@"
         }
         ;;
 
@@ -145,7 +127,6 @@ done
 # Install unmet deps.
 if (( ndeps=${#deps[@]} )); then
     if [[ $OS == macos ]]; then
-        #check_for brew || install_brew
 
         # Special case. https://formulae.brew.sh/cask/vlc
         if [[ -v deps[$MACOS_VLC] ]]; then
@@ -160,17 +141,14 @@ fi
 
 # ------------
 
-sudo -u ${SUDO_USER:-$USER} pip3 install --upgrade pirate-get
-sudo -u ${SUDO_USER:-$USER} pip3 install --upgrade subliminal
+pip3 install pirate-get --upgrade
+pip3 install subliminal --upgrade
+
 rm -rf /usr/local/lib/node_modules/peerflix
 npm uninstall -g peerflix --save
 npm install -g peerflix
 
-cd /usr/local/bin
-curl -s https://raw.githubusercontent.com/0zz4r/bashflix/master/bashflix.sh -o bashflix
-chmod +x bashflix
-sudo -u ${SUDO_USER:-$USER} touch ~/bashflix_previously.txt
-
-echo 'Bashflix installed!'
-echo
+touch ~/bashflix_previously.txt
+curl -s https://raw.githubusercontent.com/0zz4r/bashflix/master/bashflix.sh -o /usr/local/bin/bashflix
+chmod +x /usr/local/bin/bashflix
 bashflix -h
