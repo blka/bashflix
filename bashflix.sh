@@ -126,7 +126,7 @@ if [ -n "${SUBTITLES_LANGUAGE}" ]; then
 fi
 
 if [ -z "${subtitle}" ]; then
-  peerflix "${magnet}" -n --"${PLAYER}" -- --fullscreen
+  peerflix "${magnet}" -n -r --"${PLAYER}" -- --fullscreen
 else
-  peerflix "${magnet}" -n -t "${subtitle}" --"${PLAYER}" -- --fullscreen 
+  peerflix "${magnet}" -n -r -t "${subtitle}" --"${PLAYER}" -- --fullscreen 
 fi
