@@ -143,8 +143,8 @@ fi
 
 # ------------
 
-pip3 install pirate-get --upgrade
-pip3 install subliminal --upgrade
+pip3 install --user pirate-get --upgrade
+pip3 install --user subliminal --upgrade
 
 rm -rf /usr/local/lib/node_modules/peerflix
 npm uninstall -g peerflix --save
