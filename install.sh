@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
 
-set -x
-
 case $(uname -s) in
     Darwin)
-        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+        which -s brew
+        if [[ $? != 0 ]] ; then
+            /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+        fi
+        brew update
         brew install bash
         ;;
 esac
