@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -x
+
 # Test for a binary in $PATH.
 in_path () {
     type -p "$1" >/dev/null
