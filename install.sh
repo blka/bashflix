@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -x
+
 case $(uname -s) in
     Darwin)
         which -s brew
