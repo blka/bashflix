@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-#set -exu
+#set -ex
 
 help () {
     echo -n "
@@ -22,16 +22,16 @@ help () {
     echo "  help                                       See this text"
     echo 
     echo "Options:"
-    echo "  -p, --player PLAYER                        Specify the player"
+    echo "  -p, --player PLAYER                        Specify the player (default: vlc)"
     echo
-    echo "Tips"
+    echo "Tips:"
     echo "  * Run 'bashflix update';"
     echo "  * Change DNS resolver to 1.1.1.1 - https://1.1.1.1/dns/;"
     echo "  * Add 'select' before \"SEARCH TERM\";"
     echo "  * Pause video and wait a bit;"
     echo "  * To sync subtitles, press 'j' to speed it up or 'h' to delay it;"
-    echo "  * Issue report: https://github.com/andretavare5/bashflix/issues/new/choose."
-    echo "  * Use a VPN for privacy - https://protonvpn.com/."
+    echo "  * Please report issues here: https://github.com/andretavare5/bashflix/issues/new/choose."
+    echo "  * Use a VPN for privacy (protonvpn.com)."
 }
 
 SELECT=false
@@ -96,10 +96,18 @@ query="${query%\ }"
 query="${query// /.}"
 
 if [ "$SELECT" = true ]; then
-  out=$(pirate-get --total-results 25 -C 'echo "%s"' "${query}" | tail -n 1)
+  echo "q" | pirate-get --total-results 5 -C 'echo "%s"' "${query}"
+  echo
+  echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+  echo "|                                                               |"
+  echo "| PLEASE LOOK AT THE LIST ABOVE ^^^ AND INPUT THE *LINK* NUMBER |"
+  echo "|                                                               |"
+  echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+  echo
+  out=$(pirate-get --total-results 5 -C 'echo "%s"' "${query}")
   magnet="${out:2}"
 else
-  magnet=$(pirate-get --total-results 1 -0 -C 'echo "%s"' "${query}" | tail -n 1)
+  magnet=$(pirate-get --total-results 1 -0 -C 'echo "%s"' "${query}")
 fi
 
 if [ -z $magnet ]; then
