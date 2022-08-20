@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -x
+#set -x
 
 # Test for a binary in $PATH.
 in_path () {
@@ -118,19 +118,46 @@ fi
 
 # ------------
 
-pip3 install --user pirate-get --upgrade
-pip3 install --user subliminal --upgrade
+echo
+echo "Installing pirate-get..."
+pip3 install pirate-get -qq
+echo "Done!"
 
-rm -rf /usr/local/lib/node_modules/peerflix
-npm uninstall -g peerflix --save
-npm install -g peerflix
+echo
+echo "Installing subliminal..."
+pip3 install subliminal -qq
+echo "Done!"
 
+echo
+echo "Installing peerflix..."
+#rm -rf /usr/local/lib/node_modules/peerflix
+#npm uninstall -g peerflix --save
+npm install -g peerflix -q
+echo "Done!"
+
+echo
+echo "Downloading and installing bashflix..."
 touch ~/bashflix_previously.txt
 mkdir -p ~/bin
 curl -s https://raw.githubusercontent.com/andretavare5/bashflix/master/bashflix.sh -o ~/bin/bashflix
 chmod +x ~/bin/bashflix
-echo "export PATH=\"$HOME/bin:$PATH\"" >> ~/.bashrc
-echo "export PATH=\"$HOME/bin:$PATH\"" >> ~/.zshrc
-source ~/.bashrc
-source ~/.zshrc
-bashflix
+
+case $(echo $SHELL) in
+    /bin/zsh)
+        echo "export PATH=\"$HOME/bin:\$PATH\"" >> ~/.zshrc
+        echo "Done!"
+        echo
+        echo "Please restart this terminal and run \"bashflix\""
+        ;;
+
+    /bin/bash)
+        echo "export PATH=\"$HOME/bin:\$PATH\"" >> ~/.bashrc
+        source ~/.bashrc
+        echo "Done!"
+        bashflix
+        ;;
+esac
+
+
+
+
