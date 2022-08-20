@@ -31,7 +31,7 @@ help () {
     echo "  * Pause video and wait a bit;"
     echo "  * To sync subtitles, press 'j' to speed it up or 'h' to delay it;"
     echo "  * Issue report: https://github.com/andretavare5/bashflix/issues/new/choose."
-    echo "  * Use a VPN for privacy - https://www.mysteriumvpn.com/."
+    echo "  * Use a VPN for privacy - https://protonvpn.com/."
 }
 
 SELECT=false

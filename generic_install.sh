@@ -132,7 +132,9 @@ echo
 echo "Installing peerflix..."
 #rm -rf /usr/local/lib/node_modules/peerflix
 #npm uninstall -g peerflix --save
-npm install -g peerflix -q
+mkdir "${HOME}/.npm-packages"
+npm config set prefix "${HOME}/.npm-packages"
+npm install -g peerflix -s
 echo "Done!"
 
 echo
@@ -142,22 +144,24 @@ mkdir -p ~/bin
 curl -s https://raw.githubusercontent.com/andretavare5/bashflix/master/bashflix.sh -o ~/bin/bashflix
 chmod +x ~/bin/bashflix
 
+NPM_PACKAGES="${HOME}/.npm-packages"
+
 case $(echo $SHELL) in
     /bin/zsh)
         echo "export PATH=\"$HOME/bin:\$PATH\"" >> ~/.zshrc
-        echo "Done!"
-        echo
-        echo "Please restart this terminal and run \"bashflix\""
+        echo "export PATH=\"$NPM_PACKAGES/bin:\$PATH\"" >> ~/.zshrc
         ;;
 
     /bin/bash)
         echo "export PATH=\"$HOME/bin:\$PATH\"" >> ~/.bashrc
+        echo "export PATH=\"$NPM_PACKAGES/bin:\$PATH\"" >> ~/.bashrc
         source ~/.bashrc
-        echo "Done!"
-        bashflix
         ;;
 esac
 
+echo "Done!"
+echo
+echo "Please restart this terminal and run \"bashflix\""
 
 
 
