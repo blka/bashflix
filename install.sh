@@ -14,5 +14,5 @@ case $(uname -s) in
         echo "Done!"
         ;;
 esac
-#bash -c "$(curl -s https://raw.githubusercontent.com/andretavare5/bashflix/master/generic_install.sh)"
-bash -c "$(cat generic_install.sh)"
+
+bash -c "$(curl -s https://raw.githubusercontent.com/andretavare5/bashflix/master/generic_install.sh)"
